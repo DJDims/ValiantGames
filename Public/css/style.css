@@ -1,0 +1,10 @@
+@font-face {
+    font-family: "Valorant";
+    font-weight: 400;
+    src: url("../fonts/Valorant.ttf");
+}
+
+h2 {
+    font-family: 'Valorant';
+    color: #00e2e6;
+}

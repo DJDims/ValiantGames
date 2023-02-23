@@ -21,6 +21,8 @@
 	<link rel="stylesheet" href="../../Public/cyborgTheme/css/animate.css">
 	<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
+	<link rel="stylesheet" href="../../Public/css/style.css">
+
 </head>
 
 <body>
@@ -46,7 +48,8 @@
 					<nav class="main-nav">
 						<!-- ***** Logo Start ***** -->
 						<a href="index.html" class="logo">
-							<img src="Images/logo.png" alt="">
+							<!-- <img src="Images/logo.png" alt=""> -->
+							<h2>ValiantGames</h2>
 						</a>
 						<!-- ***** Logo End ***** -->
 						<!-- ***** Search End ***** -->
@@ -60,10 +63,17 @@
 						<!-- ***** Menu Start ***** -->
 						<ul class="nav">
 							<li><a href="index.html" class="active">Home</a></li>
-							<li><a href="browse.html">Browse</a></li>
-							<li><a href="details.html">Details</a></li>
-							<li><a href="streams.html">Streams</a></li>
-							<li><a href="profile.html">Profile <img src="/Images/profile-header.jpg" alt=""></a></li>
+								<?php
+									if (!isset($_SESSION['sessionId'])) {
+										echo '<li><a href="login">LogIn</a></li>';
+									} else {
+										echo '<li><a href="browse.html">Browse</a></li>';
+										echo '<li><a href="details.html">Details</a></li>';
+										echo '<li><a href="streams.html">Streams</a></li>';
+										echo '<li><a href="profile.html">Profile <img src="/Images/profile-header.jpg" alt=""></a></li>';
+										echo '<li><a href="logout">'.$_SESSION['name'].' - LogOut</a></li>';
+									}
+								?>
 						</ul>
 						<a class='menu-trigger'>
 							<span>Menu</span>
