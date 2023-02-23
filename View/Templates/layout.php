@@ -85,12 +85,19 @@
 		</div>
 	</header>
 	<!-- ***** Header Area End ***** -->
-
-	<?php
-		if (isset($pageContent)) {
-			echo $pageContent;
-		}
-	?>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="page-content">
+				<?php
+					if (isset($pageContent)) {
+						echo $pageContent;
+					}
+				?>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<footer>
 		<div class="container">
