@@ -39,7 +39,7 @@ switch($route){
 	case 'profile':
 		UserController::showProfile($id);
 		break;
-
+//---------------companies---------------
 	case 'showTableCompanies':
 		CompanyController::showTableCompanies();
 		break;
@@ -67,7 +67,8 @@ switch($route){
 	case 'deleteCompany':
 		CompanyController::deleteCompany($id);
 		break;
-
+//---------------companies---------------
+//---------------categories---------------
 	case 'showTableCategories':
 		CategoryController::showTableCategories();
 		break;
@@ -95,11 +96,65 @@ switch($route){
 	case 'deleteCategory':
 		CategoryController::deleteCategory($id);
 		break;
+//---------------categories---------------
+//---------------games---------------
+	case 'showTableGames':
+		GameController::showTableGames();
+		break;
 
-	// case 'editCompany':
-	// 	CompanyController::
-	// 	break;
+	case 'showAddGame':
+		GameController::showAddGame();
+		break;
 
+	case 'addGame':
+		GameController::addGame();
+		break;
+
+	case 'showEditGame':
+		GameController::showEditGame($id);
+		break;
+
+	case 'editGame':
+		GameController::editGame($id);
+		break;
+
+	case 'showDeleteGame':
+		GameController::showDeleteGame($id);
+		break;
+
+	case 'deleteGame':
+		GameController::deleteGame($id);
+		break;
+//---------------games---------------
+//---------------bundles---------------
+	case 'showTableBundles':
+		BundleController::showTableBundles();
+		break;
+
+	case 'showAddBundle':
+		BundleController::showAddBundle();
+		break;
+
+	case 'addBundle':
+		BundleController::addBundle();
+		break;
+
+	case 'showEditBundle':
+		BundleController::showEditBundle($id);
+		break;
+
+	case 'editBundle':
+		BundleController::editBundle($id);
+		break;
+
+	case 'showDeleteBundle':
+		BundleController::showDeleteBundle($id);
+		break;
+
+	case 'deleteBundle':
+		BundleController::deleteBundle($id);
+		break;
+//---------------bundles---------------
 //DEVELOPER ROUTES
 	case 'dropSession':
 		session_destroy();

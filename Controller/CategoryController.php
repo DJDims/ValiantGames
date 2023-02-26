@@ -26,13 +26,15 @@ class CategoryController{
         return;
     }
     
-    public static function showEditCategory($id) {
-        $category = CategoryModel::findCategoryById($id);
+    public static function showEditCategory($categoryId) {
+        $category = CategoryModel::findCategoryById($categoryId);
+        
         include_once('View/categoryEdit.php');
+        return;
     }
     
-    public static function editCategory($id) {
-        $result = CategoryModel::editCategory($id);
+    public static function editCategory($categoryId) {
+        $result = CategoryModel::editCategory($categoryId);
         
         if ($result == true) {
             $_SESSION['message'] = 'Данные обновлены';
@@ -45,14 +47,16 @@ class CategoryController{
         return;
     }
     
-    public static function showDeleteCategory($id) {
-        $category = CategoryModel::findCategoryById($id);
-        $countGames = CategoryModel::countGamesByCategoryId($id);
+    public static function showDeleteCategory($categoryId) {
+        $category = CategoryModel::findCategoryById($categoryId);
+        $countGames = CategoryModel::countGamesByCategoryId($categoryId);
+
         include_once('View/categoryDelete.php');
+        return;
     }
     
-    public static function deleteCategory($id) {
-        $result = CategoryModel::deleteCategory($id);
+    public static function deleteCategory($categoryId) {
+        $result = CategoryModel::deleteCategory($categoryId);
 
         if ($result == true) {
             $_SESSION['message'] = 'Данные удалены';

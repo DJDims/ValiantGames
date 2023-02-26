@@ -3,7 +3,7 @@
     $title = '';
 ?>
 
-<div class="row">
+<div class="row header-text">
     <h4>Page not found</h4>
     <div style="text-align: center;">
         <img src="../Images/404error.png" style="width: 45%;" alt="">

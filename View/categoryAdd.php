@@ -5,7 +5,7 @@
 
 <form class="col-4" action="addCategory" method="POST">
     <div class="form-group">
-        <input class="form-control" type="text" placeholder="Category title" id="categoryTitle" name="categoryTitle" required />
+        <input class="form-control" type="text" placeholder="Category title" name="categoryTitle" required />
     </div>
     <div class="form-group">
         <button type="sumbit" name="send" class="btn btn-custom">Add Category</button>

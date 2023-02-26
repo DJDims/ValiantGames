@@ -9,7 +9,7 @@ $title = '';
         <div class="main-profile ">
             <div class="row">
                 <div class="col-lg-4">
-                    <img src="assets/images/profile.jpg" alt="" style="border-radius: 23px;">
+                    <img src="<?php echo $_SESSION['avatar']?>" alt="" style="border-radius: 23px;">
                 </div>
                 <div class="col-lg-4 align-self-center">
                     <div class="main-info header-text">
@@ -19,8 +19,8 @@ $title = '';
                 </div>
                 <div class="col-lg-4 align-self-center">
                     <ul>
-                        <li>Games Buyed <span>3</span></li>
-                        <li>Games Whised <span>3</span></li>
+                        <li>Games Buyed <span><?php echo $gamesBuyed['COUNT(id)'];?></span></li>
+                        <li>Games Whised <span><?php echo $gamesWished['COUNT(id)'];?></span></li>
                     </ul>
                 </div>
             </div>

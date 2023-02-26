@@ -46,6 +46,22 @@ class UserModel{
         return $response;
     }
 
+    public static function countBuyedGames($userId) {
+        $query = "SELECT COUNT(id) FROM `game_user` WHERE `status` = 2 AND `userId` = '$userId'";
+        $db = new database();
+        $response = $db -> getOne($query);
+
+        return $response;
+    }
+
+    public static function countWishedGames($userId) {
+        $query = "SELECT COUNT(id) FROM `game_user` WHERE `status` = 1 AND `userId` = '$userId'";
+        $db = new database();
+        $response = $db -> getOne($query);
+
+        return $response;
+    }
+
     public static function addUser() {
         
     }

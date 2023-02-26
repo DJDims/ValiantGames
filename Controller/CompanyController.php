@@ -26,13 +26,14 @@ class CompanyController{
         return;
     }
     
-    public static function showEditCompany($id) {
-        $company = CompanyModel::findCompanyById($id);
+    public static function showEditCompany($companyId) {
+        $company = CompanyModel::findCompanyById($companyId);
         include_once('View/companyEdit.php');
+        return;
     }
     
-    public static function editCompany($id) {
-        $result = CompanyModel::editCompany($id);
+    public static function editCompany($companyId) {
+        $result = CompanyModel::editCompany($companyId);
 
         if ($result == true) {
             $_SESSION['message'] = 'Данные обновлены';
@@ -45,14 +46,16 @@ class CompanyController{
         return;
     }
     
-    public static function showDeleteCompany($id) {
-        $company = CompanyModel::findCompanyById($id);
-        $countGames = CompanyModel::countGamesByCompanyId($id);
+    public static function showDeleteCompany($companyId) {
+        $company = CompanyModel::findCompanyById($companyId);
+        $countGames = CompanyModel::countGamesByCompanyId($companyId);
+
         include_once('View/companyDelete.php');
+        return;
     }
     
-    public static function deleteCompany($id) {
-        $result = CompanyModel::deleteCompany($id);
+    public static function deleteCompany($companyId) {
+        $result = CompanyModel::deleteCompany($companyId);
 
         if ($result == true) {
             $_SESSION['message'] = 'Данные удалены';

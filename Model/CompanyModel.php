@@ -9,8 +9,8 @@ class CompanyModel{
         return $response;
     }
 
-    public static function findCompanyById($id) {
-        $query = "SELECT * FROM `companies` WHERE id ='$id'";
+    public static function findCompanyById($companyId) {
+        $query = "SELECT * FROM `companies` WHERE id ='$companyId'";
         $db = new database();
         $response = $db -> getOne($query);
 
@@ -25,8 +25,8 @@ class CompanyModel{
         return $response;
     }
 
-    public static function countGamesByCompanyId($id) {
-        $query = "SELECT COUNT(title) FROM `games` WHERE companyId = '$id'";
+    public static function countGamesByCompanyId($companyId) {
+        $query = "SELECT COUNT(title) FROM `games` WHERE companyId = '$companyId'";
         $db = new database();
         $response = $db -> getOne($query);
 
@@ -52,14 +52,14 @@ class CompanyModel{
         return $result;
     }
 
-    public static function editCompany($id) {
+    public static function editCompany($companyId) {
         $result = false;
         if (isset($_POST['send'])) {
             $title = trim($_POST['companyTitle']);
             $updated_at = date("Y-m-d H:i:s");
 
             if ($title != '') {
-                $query = "UPDATE `companies` SET `title`='$title',`updated_at`='$updated_at' WHERE id = '$id';";
+                $query = "UPDATE `companies` SET `title`='$title',`updated_at`='$updated_at' WHERE id = '$companyId';";
                 $db = new database();
                 $response = $db -> executeRun($query);
 
@@ -72,11 +72,11 @@ class CompanyModel{
         return $result;
     }
 
-    public static function deleteCompany($id) {
+    public static function deleteCompany($companyId) {
         $result = false;
 
         if (isset($_POST['send'])) {
-            $query = "DELETE FROM `companies` WHERE `id` = '$id'";
+            $query = "DELETE FROM `companies` WHERE `id` = '$companyId'";
             $db = new database();
             $response = $db -> executeRun($query);
 

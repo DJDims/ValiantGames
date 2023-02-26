@@ -5,7 +5,7 @@
 
 <form class="col-4" action="deleteCategory?<?php echo $category['categoryId']?>" method="POST">
     <div class="form-group">
-        <input class="form-control" type="text" placeholder="Category title" id="categoryTitle" name="categoryTitle" readonly value="<?php echo $category['categoryTitle']?>" />
+        <input class="form-control" type="text" placeholder="Category title" name="categoryTitle" readonly value="<?php echo $category['categoryTitle']?>" />
     </div>
     <p>This category have <?php echo $countGames['COUNT(title)']?> links</p>
     <div class="form-group">

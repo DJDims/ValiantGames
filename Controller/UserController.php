@@ -35,6 +35,8 @@ class UserController{
 
     public static function showProfile($userId) {
         $userData = UserModel::findUserById($userId);
+        $gamesBuyed = UserModel::countBuyedGames($userId);
+        $gamesWished = UserModel::countWishedGames($userId);
         include_once('View/myaccount.php');
     }
 }

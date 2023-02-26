@@ -45,3 +45,9 @@ tr {
 tr p {
     color: white !important;
 }
+
+@media (max-width: 1399.98px) {
+    .nav li {
+        padding: 0px !important;
+    }
+}

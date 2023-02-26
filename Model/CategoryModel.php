@@ -9,8 +9,8 @@ class CategoryModel{
         return $response;
     }
 
-    public static function findCategoryById($id) {
-        $query = "SELECT * FROM `categories` WHERE categoryId = '$id'";
+    public static function findCategoryById($categoryId) {
+        $query = "SELECT * FROM `categories` WHERE categoryId = '$categoryId'";
         $db = new database();
         $response = $db -> getOne($query);
 
@@ -25,8 +25,8 @@ class CategoryModel{
         return $response;
     }
 
-    public static function countGamesByCategoryId($id) {
-        $query = "SELECT COUNT(title) FROM `games` WHERE categoryId = '$id'";
+    public static function countGamesByCategoryId($categoryId) {
+        $query = "SELECT COUNT(title) FROM `games` WHERE categoryId = '$categoryId'";
         $db = new database();
         $response = $db -> getOne($query);
 
@@ -52,14 +52,14 @@ class CategoryModel{
         return $result;
     }
 
-    public static function editCategory($id) {
+    public static function editCategory($categoryId) {
         $result = false;
         if (isset($_POST['send'])) {
             $title = trim($_POST['categoryTitle']);
             $updated_at = date("Y-m-d H:i:s");
 
             if ($title != '') {
-                $query = "UPDATE `categories` SET `categoryTitle`='$title',`updated_at`='$updated_at' WHERE categoryId = '$id';";
+                $query = "UPDATE `categories` SET `categoryTitle`='$title',`updated_at`='$updated_at' WHERE categoryId = '$categoryId';";
                 $db = new database();
                 $response = $db -> executeRun($query);
 
@@ -72,11 +72,11 @@ class CategoryModel{
         return $result;
     }
 
-    public static function deleteCategory($id) {
+    public static function deleteCategory($categoryId) {
         $result = false;
 
         if (isset($_POST['send'])) {
-            $query = "DELETE FROM `categories` WHERE `categoryId` = '$id'";
+            $query = "DELETE FROM `categories` WHERE `categoryId` = '$categoryId'";
             $db = new database();
             $response = $db -> executeRun($query);
 
