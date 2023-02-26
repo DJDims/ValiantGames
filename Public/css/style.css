@@ -4,7 +4,44 @@
     src: url("../fonts/Valorant.ttf");
 }
 
+body {
+    min-height: 100vh !important;
+}
+
 h2 {
     font-family: 'Valorant';
     color: #00e2e6;
+}
+
+form legend {
+    color: #e75e8d;
+}
+
+form div {
+    margin-bottom: 1em;
+}
+
+.btn-custom {
+    background-color: #e75e8d;
+}
+
+.btn-custom:hover {
+    background-color: #00e2e6;
+}
+
+.fa-eur {
+    color: lime !important;
+}
+
+.userAvatar {
+    width: 30px;
+    height: 30px;
+}
+
+tr {
+    color: white !important;
+}
+
+tr p {
+    color: white !important;
 }

@@ -47,7 +47,7 @@
 				<div class="col-12">
 					<nav class="main-nav">
 						<!-- ***** Logo Start ***** -->
-						<a href="index.html" class="logo">
+						<a href="/" class="logo">
 							<!-- <img src="Images/logo.png" alt=""> -->
 							<h2>ValiantGames</h2>
 						</a>
@@ -62,16 +62,20 @@
 						<!-- ***** Search End ***** -->
 						<!-- ***** Menu Start ***** -->
 						<ul class="nav">
-							<li><a href="index.html" class="active">Home</a></li>
+							<li><a href="/" class="active">Home</a></li>
 								<?php
 									if (!isset($_SESSION['sessionId'])) {
-										echo '<li><a href="login">LogIn</a></li>';
+										echo '<li><a href="showLogin">LogIn</a></li>';
 									} else {
-										echo '<li><a href="browse.html">Browse</a></li>';
-										echo '<li><a href="details.html">Details</a></li>';
-										echo '<li><a href="streams.html">Streams</a></li>';
-										echo '<li><a href="profile.html">Profile <img src="/Images/profile-header.jpg" alt=""></a></li>';
-										echo '<li><a href="logout">'.$_SESSION['name'].' - LogOut</a></li>';
+										if ($_SESSION['role'] == 'ADMIN') {
+											echo '<li><a href="showTableGames">Games</a></li>';
+											echo '<li><a href="showTableCompanies">Companies</a></li>';
+											echo '<li><a href="showTableCategories">Categories</a></li>';
+											echo '<li><a href="showTableBundles">Bundles</a></li>';
+										} else {
+											echo '<li><a href="browse.html">Browse</a></li>';
+										}
+										echo '<li><a href="profile?'.$_SESSION['userId'].'">Profile <img src="'.$_SESSION['avatar'].'" class="userAvatar" alt=""></a></li>';
 									}
 								?>
 						</ul>
@@ -121,6 +125,7 @@
 	<script src="../../Public/cyborgTheme/js/popup.js"></script>
 	<script src="../../Public/cyborgTheme/js/custom.js"></script>
 
+	<script src="../../Public/js/script.js"></script>
 
 </body>
 
