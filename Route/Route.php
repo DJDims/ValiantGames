@@ -15,17 +15,17 @@ switch($route){
 	case 'index.php':
 		MainController::StartSite();
 		break;
-
-	case 'showAddCategory':
-		CompanyController::showAddCompany();
-		break;
-		
+//---------------users---------------
 	case 'showLogin':
 		UserController::showLoginForm();
 		break;
 
 	case 'login':
 		UserController::login();
+		break;
+
+	case 'logout':
+		UserController::logout();
 		break;
 
 	case 'showRegister':
@@ -39,6 +39,15 @@ switch($route){
 	case 'profile':
 		UserController::showProfile($id);
 		break;
+
+	case 'showTableUsers':
+		UserController::showTableUsers();
+		break;
+
+	case 'addMoney':
+		UserController::addMoney();
+		break;
+//---------------users---------------
 //---------------companies---------------
 	case 'showTableCompanies':
 		CompanyController::showTableCompanies();

@@ -18,6 +18,8 @@
     </div>
 </form>
 
+<p>Don't have account yet? <a href="showRegister">Register here</a></p>
+
 <?php
     $pageContent = ob_get_clean();
     include 'View/Templates/layout.php';

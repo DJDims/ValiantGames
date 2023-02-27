@@ -56,7 +56,7 @@ class GameController{
         $game = GameModel::findGameById($gameId);
         $company = CompanyModel::findCompanyById($game['companyId']);
         $category = CategoryModel::findCategoryById($game['categoryId']);
-        $countBundles = GameModel::countBundlesByGame($gameId);
+        $countBundles = BundleModel::countBundlesByGame($gameId);
         
         include_once('View/gameDelete.php');
         return;

@@ -55,5 +55,5 @@ function setAllSelected(select) {
 
 function smbtForm() {
 	setAllSelected(gamesThis);
-    // form.submit();
 }
+

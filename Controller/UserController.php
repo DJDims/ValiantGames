@@ -17,6 +17,11 @@ class UserController{
         return;
     }
 
+    public static function logout() {
+        UserModel::logout();
+        include_once('View/loginForm.php');
+    }
+
     public static function showRegisterForm() {
         include_once('View/registerForm.php');
         return;
@@ -38,6 +43,22 @@ class UserController{
         $gamesBuyed = UserModel::countBuyedGames($userId);
         $gamesWished = UserModel::countWishedGames($userId);
         include_once('View/myaccount.php');
+    }
+
+    public static function showTableUsers() {
+        $users = UserModel::findOtherUsers();
+        include_once('View/userTable.php');
+    }
+
+    public static function addMoney() {
+        $result = UserModel::addMoney();
+
+        if (isset($result) && $result == true) {
+            header('Location: /');
+        } else {
+            include_once('View/registerForm.php');
+        }
+        return;
     }
 }
 

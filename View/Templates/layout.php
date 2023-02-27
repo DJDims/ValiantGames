@@ -23,10 +23,11 @@
 
 	<link rel="stylesheet" href="../../Public/css/style.css">
 
+	<script src="../../Public/jquery/jquery.min.js"></script>
+
 </head>
 
 <body>
-
 	<!-- ***** Preloader Start ***** -->
 	<div id="js-preloader" class="js-preloader">
 		<div class="preloader-inner">
@@ -72,10 +73,11 @@
 											echo '<li><a href="showTableCompanies">Companies</a></li>';
 											echo '<li><a href="showTableCategories">Categories</a></li>';
 											echo '<li><a href="showTableBundles">Bundles</a></li>';
+											echo '<li><a href="showTableUsers">Users</a></li>';
 										} else {
 											echo '<li><a href="browse.html">Browse</a></li>';
 										}
-										echo '<li><a href="profile?'.$_SESSION['userId'].'">Profile <img src="'.$_SESSION['avatar'].'" class="userAvatar" alt=""></a></li>';
+										echo '<li id="loginButton" style="position: relative;"><a href="profile?'.$_SESSION['userId'].'">Profile <img src="'.$_SESSION['avatar'].'" class="userAvatar" alt=""></a><div style="display: none;"><a href="logout">Logout</a></div></li>';
 									}
 								?>
 						</ul>
@@ -107,12 +109,11 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<p>Kreivald Dmitrii | Arseni Chistyakov | JPTV20 | 2023</p>
+					<p>Kreivald Dmitrii | Arseni Chistyakov | Julia Badanova | JPTV20 | 2023</p>
 				</div>
 			</div>
 		</div>
 	</footer>
-
 
 	<!-- Scripts -->
 	<!-- Bootstrap core JavaScript -->
@@ -125,7 +126,7 @@
 	<script src="../../Public/cyborgTheme/js/popup.js"></script>
 	<script src="../../Public/cyborgTheme/js/custom.js"></script>
 
-	<script src="../../Public/js/script.js"></script>
+	<script src="../../Public/js/logout.js"></script>
 
 </body>
 

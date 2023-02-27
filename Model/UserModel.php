@@ -9,6 +9,14 @@ class UserModel{
         return $response;
     }
 
+    public static function findOtherUsers() {
+        $query = "SELECT * FROM `users` WHERE id > 1 ORDER BY `username` ASC";
+        $db = new database();
+        $response = $db -> getAll($query);
+
+        return $response;
+    }
+
     public static function findUserById($userId) {
         $query = "SELECT * FROM `users` WHERE id = '$userId'";
         $db = new database();
@@ -62,10 +70,6 @@ class UserModel{
         return $response;
     }
 
-    public static function addUser() {
-        
-    }
-
     public static function editUser($id) {
         
     }
@@ -104,8 +108,52 @@ class UserModel{
         return true;
     }
 
+    public static function logout() {
+        unset($_SESSION['sessionId']);
+        unset($_SESSION['userId']);
+        unset($_SESSION['avatar']);
+        unset($_SESSION['role']);
+        session_destroy();
+
+        return;
+    }
+
     public static function register(){
+        if (!isset($_POST['username']) || !isset($_POST['password']) || !isset($_POST['confirmPassword']) || trim($_POST['username']) == "" || trim($_POST['password']) == "" || trim($_POST['confirmPassword']) == "") {
+            return false;
+        }
         
+        $username = trim($_POST['username']);
+        $password = trim($_POST['password']);
+        $confirmPassword = trim($_POST['confirmPassword']);
+        
+        if($password != $confirmPassword) {
+            return false;
+        }
+
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $query = "INSERT INTO `users`(`username`, `password`) VALUES ('$username', '$hashedPassword')";
+        $db = new database();
+        $response = $db -> getOne($query);
+        
+        return $response;
+    }
+    
+    public static function addMoney() {
+        $addedMoney = $_POST['money'];
+        if($addedMoney == 0) {
+            return;
+        }
+        $userId = $_SESSION['userId'];
+        $currentMoney = UserModel::findUserById($userId)['wallet'];
+        $currentMoney += $addedMoney;
+
+        $query = "UPDATE `users` SET `wallet`='$currentMoney' WHERE id = '$userId'";
+        $db = new database();
+        $response = $db -> executeRun($query);
+
+        return $response;
     }
 
 }
