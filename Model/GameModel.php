@@ -56,6 +56,14 @@ class GameModel{
         return $games;
     }
 
+    public static function findLibrary($userId) {
+        $query = "SELECT * FROM `games` INNER JOIN categories ON games.categoryId = categories.categoryId WHERE id IN (SELECT gameId FROM `game_user` WHERE userId = '$userId' AND status = 2 ORDER BY created_at DESC);";
+        $db = new database();
+        $response = $db -> getAll($query);
+
+        return $response;
+    }
+
     public static function findWhisList($userId) {
         $query = "SELECT * FROM `games` INNER JOIN categories ON games.categoryId = categories.categoryId WHERE id IN (SELECT gameId FROM `game_user` WHERE userId = '$userId' AND status = 1 ORDER BY created_at DESC);";
         $db = new database();
@@ -92,7 +100,7 @@ class GameModel{
     public static function addGame() {
         $result = false;
         if (isset($_POST['send'])) {
-            $title = trim($_POST['gameTitle']);
+            $title = ucfirst(strtolower(trim($_POST['gameTitle'])));
             $company = $_POST['company'];
             $category = $_POST['category'];
             $year = $_POST['gameYear'];
@@ -117,7 +125,7 @@ class GameModel{
     public static function editGame($gameId) {
         $result = false;
         if (isset($_POST['send'])) {
-            $title = trim($_POST['gameTitle']);
+            $title = ucfirst(strtolower(trim($_POST['gameTitle'])));
             $company = $_POST['company'];
             $category = $_POST['category'];
             $year = $_POST['gameYear'];

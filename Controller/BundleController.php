@@ -16,15 +16,15 @@ class BundleController{
     public static function addBundle() {
         $result = BundleModel::addBundle();
 
-        if ($result == true) {
-            $_SESSION['message'] = 'Данные добавлены';
-            header('Location: showTableBundles');
-        } else {
-            $error = 'Не удалось добавить данные';
-            include_once('View/bundleAdd.php');;
-        }
+        // if ($result == true) {
+        //     $_SESSION['message'] = 'Данные добавлены';
+        //     header('Location: showTableBundles');
+        // } else {
+        //     $error = 'Не удалось добавить данные';
+        //     include_once('View/bundleAdd.php');;
+        // }
 
-        return;
+        // return;
     }
 
     public static function showEditBundle($bundleId){

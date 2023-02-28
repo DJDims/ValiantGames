@@ -64,9 +64,9 @@ class database {
             echo "Error:".$ex->getMessage();
         }
     }
-
+    
     function executeRun($query) {
-		try{
+        try{
             $response=  $this->conn->exec($query);
             return $response;
             
@@ -75,5 +75,19 @@ class database {
         }   
     }
 
+    function getLastId() {
+        // try{
+        //     $result = $this->conn->prepare();
+        //     $result->execute();
+        //     $response = $this->conn->lastInsertId();
+            
+        //     return $response;
+            
+        // } catch (Exception $ex) {
+        //     echo "Error:".$ex->getMessage();
+        // }
+        $lastId = $this -> conn -> lastInsertId();
+        return $lastId;
+    }
 }
 ?>

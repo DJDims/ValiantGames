@@ -46,6 +46,33 @@ tr p {
     color: white !important;
 }
 
+.modal-content {
+    background-color: #27292a;
+}
+
+.modal-title {
+    color: #e75e8d;
+}
+
+.modal-header button {
+    background-color: #27292a;
+    border: none;
+}
+
+.modal-body {
+    margin: 0;
+}
+
+.modal-body .form-group {
+    margin: 0;
+}
+
+.item ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 @media (max-width: 1399.98px) {
     .nav li {
         padding: 0px !important;

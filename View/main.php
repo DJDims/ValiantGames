@@ -32,6 +32,8 @@ $title = '';
             echo '<li><img src="'.$v['poster'].'" alt="" class="templatemo-item"></li>';
             echo '<li><h4>'.$v['title'].'</h4><span>'.$v['categoryTitle'].'</span></li>';
             echo '<li><h4>Date Added</h4><span>'.$v['created_at'].'</span></li>';
+            echo '<li><h4>Price</h4><span>'.$v['price'].'<i class="fa fa-eur"></i></span></li>';
+            echo '<li><a class="btn btn-success col-5" href="showBuyGame?'.$v['id'].'">Buy</a></li>';
             echo '</ul></div>';
         }
         echo '</div>';
@@ -45,18 +47,6 @@ $title = '';
     }
 ?>
 <!-- ***** Gaming Library End ***** -->
-
-
-
-
-
-
-
-
-
-
-
-<!-- ***** Banner End ***** -->
 
 <!-- ***** Most Popular Start ***** -->
 

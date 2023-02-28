@@ -47,6 +47,10 @@ switch($route){
 	case 'addMoney':
 		UserController::addMoney();
 		break;
+
+	case 'showBuyGame':
+		UserController::showBuyGame($id);
+		break;
 //---------------users---------------
 //---------------companies---------------
 	case 'showTableCompanies':

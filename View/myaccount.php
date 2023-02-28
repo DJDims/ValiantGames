@@ -16,13 +16,13 @@ $title = '';
                         <span style="background-color: lime;">Online</span>
                         <h4><?php echo $userData['username']?></h4>
                         <p>My wallet: <?php echo $userData['wallet']; ?>€</p>
-                        <a id="showAddMoney" href="#">Add money</a>
+                        <a id="showAddMoney" href="#" data-bs-toggle="modal" data-bs-target="#addMoneyModal">Add money</a>
                     </div>
                 </div>
                 <div class="col-lg-4 align-self-center">
                     <ul>
-                        <li>Games Buyed <span><?php echo $gamesBuyed['COUNT(id)'];?></span></li>
-                        <li>Games Whised <span><?php echo $gamesWished['COUNT(id)'];?></span></li>
+                        <li>Games Buyed <span><?php echo $countGamesBuyed['COUNT(id)'];?></span></li>
+                        <li>Games Whised <span><?php echo $countGamesWished['COUNT(id)'];?></span></li>
                     </ul>
                 </div>
             </div>
@@ -32,55 +32,72 @@ $title = '';
 <!-- ***** Banner End ***** -->
 
 <!-- ***** Gaming Library Start ***** -->
-<div class="gaming-library profile-library">
-    <div class="col-lg-12">
-        <div class="heading-section">
-            <h4>Library</h4>
-        </div>
-        <div class="item">
-            <ul>
-                <li><img src="assets/images/game-01.jpg" alt="" class="templatemo-item"></li>
-                <li>
-                    <h4>Dota 2</h4><span>Sandbox</span>
-                </li>
-                <li>
-                    <h4>Date Added</h4><span>24/08/2036</span>
-                </li>
-                <li>
-                    <h4>Hours Played</h4><span>634 H 22 Mins</span>
-                </li>
-                <li>
-                    <h4>Currently</h4><span>Downloaded</span>
-                </li>
-                <li>
-                    <div class="main-border-button border-no-active"><a href="#">Donwloaded</a></div>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
+<?php
+    echo '<div class="gaming-library">';
+    echo '<div class="col-lg-12">';
+    echo '<div class="heading-section">';
+    echo '<h4>Your Wishlist</h4>';
+    foreach ($gamesBuyed as $k => $v) {
+        echo '<div class="item"><ul>';
+        echo '<li><img src="'.$v['poster'].'" alt="" class="templatemo-item"></li>';
+        echo '<li><h4>'.$v['title'].'</h4><span>'.$v['categoryTitle'].'</span></li>';
+        echo '<li><h4>Date Buyed</h4><span>'.$v['created_at'].'</span></li>';
+        echo '</ul></div>';
+    }
+    echo '</div>';
+    echo '</div>';
+    echo '<div class="col-lg-12">';
+    echo '<div class="main-button">';
+    echo '<a href="profile.html">View Your Wishlist</a>';
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
+    ?>
 <!-- ***** Gaming Library End ***** -->
+<!-- ***** Wishlist Start ***** -->
+<?php
+    echo '<div class="gaming-library">';
+    echo '<div class="col-lg-12">';
+    echo '<div class="heading-section">';
+    echo '<h4>Your library</h4>';
+    foreach ($gamesWished as $k => $v) {
+        echo '<div class="item"><ul>';
+        echo '<li><img src="'.$v['poster'].'" alt="" class="templatemo-item"></li>';
+        echo '<li><h4>'.$v['title'].'</h4><span>'.$v['categoryTitle'].'</span></li>';
+        echo '<li><h4>Date Added</h4><span>'.$v['created_at'].'</span></li>';
+        echo '</ul></div>';
+    }
+    echo '</div>';
+    echo '</div>';
+    echo '<div class="col-lg-12">';
+    echo '<div class="main-button">';
+    echo '<a href="profile.html">View Your Wishlist</a>';
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
+    ?>
+<!-- ***** Wishlist End ***** -->
 
 <!-- ***** Modals ***** -->
 <!-- ***** Add Money Modal ***** -->
-<div class="modal" id="addMoneyModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+<div class="modal" id="addMoneyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" style="color:black;">Add money</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+            <div class="modal-header">
+                <h5 class="modal-title">Add money</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <form action="addMoney" method="POST">
             <div class="modal-body">
                 <div class="form-group">
-                    <input class="form-control" type="number" min="0" name="money"/>
+                    <input class="form-control" type="number" min="0" value="0" name="money"/>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Add money</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </form>
         </div>

@@ -33,18 +33,17 @@ class BundleModel{
             $games = $_POST['bundleGames'];
             
             if ($title != '') {
-                $query = "INSERT INTO `bundles`(`title`, `price`) VALUES ('$title', '$price')";
                 $db = new database();
+                $query = "INSERT INTO `bundles`(`title`, `price`) VALUES ('$title', '$price')";
                 $response = $db -> executeRun($query);
                 
-                $query = "SELECT id FROM `bundles` ORDER BY id DESC LIMIT 1";
-                $bundleId = $db -> getOne($query);
-                $bundleId = $bundleId['id'];
-                
+                // $query = "SELECT id FROM `bundles` ORDER BY id DESC LIMIT 1";
+                $bundleId = $db -> getLastId();
+                // echo $bundleId;
+                var_dump($bundleId);
                 
                 foreach ($games as $k => $v) {
                     $query = "INSERT INTO `game_bundle`(`gameId`, `bundleId`) VALUES ('$v','$bundleId')";
-                    $db = new database();
                     $db -> executeRun($query);
                 }
                 
@@ -53,7 +52,7 @@ class BundleModel{
                 }
             }
         }
-        return $result;
+        // return $result;
     }
 
     public static function editBundle($bundleId) {
@@ -65,7 +64,7 @@ class BundleModel{
             $updated_at = date("Y-m-d H:i:s");
 
             if ($title != '') {
-                $query = "UPDATE `bundles` SET `title`='$title',`price`='$price',`updated_at`='$updated_at'";
+                $query = "UPDATE `bundles` SET `title`='$title',`price`='$price',`updated_at`='$updated_at' WHERE id = '$bundleId'";
                 $db = new database();
                 $response = $db -> executeRun($query);
                 $query = "DELETE FROM `game_bundle` WHERE bundleId = '$bundleId'";

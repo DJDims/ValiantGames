@@ -40,8 +40,10 @@ class UserController{
 
     public static function showProfile($userId) {
         $userData = UserModel::findUserById($userId);
-        $gamesBuyed = UserModel::countBuyedGames($userId);
-        $gamesWished = UserModel::countWishedGames($userId);
+        $gamesBuyed = GameModel::findLibrary($userId);
+        $gamesWished = GameModel::findWhisList($userId);
+        $countGamesBuyed = UserModel::countBuyedGames($userId);
+        $countGamesWished = UserModel::countWishedGames($userId);
         include_once('View/myaccount.php');
     }
 
@@ -59,6 +61,10 @@ class UserController{
             include_once('View/registerForm.php');
         }
         return;
+    }
+
+    public static function showBuyGame($gameId){
+
     }
 }
 
