@@ -3,6 +3,7 @@
 class GameController{
     public static function showTableGames() {
         $games = GameModel::findAllGames();
+        
         include_once('View/gameTable.php');
         return;
     }

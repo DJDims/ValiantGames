@@ -37,7 +37,7 @@ switch($route){
 		break;
 
 	case 'profile':
-		UserController::showProfile($id);
+		UserController::showProfile();
 		break;
 
 	case 'showTableUsers':

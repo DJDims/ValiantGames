@@ -3,6 +3,7 @@
 class CompanyController{
     public static function showTableCompanies() {
         $companies = CompanyModel::findAllCompanies();
+        
         include_once('View/companyTable.php');
         return;
     }
@@ -28,6 +29,7 @@ class CompanyController{
     
     public static function showEditCompany($companyId) {
         $company = CompanyModel::findCompanyById($companyId);
+        
         include_once('View/companyEdit.php');
         return;
     }

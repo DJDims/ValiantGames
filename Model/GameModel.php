@@ -98,70 +98,74 @@ class GameModel{
     }
 
     public static function addGame() {
-        $result = false;
-        if (isset($_POST['send'])) {
-            $title = ucfirst(strtolower(trim($_POST['gameTitle'])));
-            $company = $_POST['company'];
-            $category = $_POST['category'];
-            $year = $_POST['gameYear'];
-            $price = $_POST['gamePrice'];
-            $poster = trim($_POST['gamePoster']);
-            $description = trim($_POST['gameDescription']);
-
-            if ($title != '') {
-                $query = "INSERT INTO `games`(`title`, `companyId`, `categoryId`, `publishYear`, `poster`, `price`, `description`) VALUES ('$title','$company','$category','$year','$poster','$price','$description');";
-                $db = new database();
-                $response = $db -> executeRun($query);
-                
-                if ($response == true){
-                    $result = true;
-                }
-            }
+        if (!isset($_POST['send'])) {
+            return false;
         }
 
-        return $result;
+        $title = ucfirst(strtolower(trim($_POST['gameTitle'])));
+        $company = $_POST['company'];
+        $category = $_POST['category'];
+        $year = $_POST['gameYear'];
+        $price = $_POST['gamePrice'];
+        $poster = trim($_POST['gamePoster']);
+        $description = trim($_POST['gameDescription']);
+
+        if ($title == '') {
+            return false;
+        }
+        $query = "INSERT INTO `games`(`title`, `companyId`, `categoryId`, `publishYear`, `poster`, `price`, `description`) VALUES ('$title','$company','$category','$year','$poster','$price','$description');";
+        $db = new database();
+        $response = $db -> executeRun($query);
+        
+        if ($response != true){
+            return false;
+        }
+
+        return true;
     }
 
     public static function editGame($gameId) {
-        $result = false;
-        if (isset($_POST['send'])) {
-            $title = ucfirst(strtolower(trim($_POST['gameTitle'])));
-            $company = $_POST['company'];
-            $category = $_POST['category'];
-            $year = $_POST['gameYear'];
-            $price = $_POST['gamePrice'];
-            $poster = trim($_POST['gamePoster']);
-            $description = trim($_POST['gameDescription']);
-            $updated_at = date("Y-m-d H:i:s");
-
-            if ($title != '') {
-                $query = "UPDATE `games` SET `title`='$title',`publishYear`='$year',`companyId`='$company',`poster`='$poster',`description`='$description',`price`='$price',`categoryId`='$category',`updated_at`='$updated_at' WHERE id = '$gameId';";
-                $db = new database();
-                $response = $db -> executeRun($query);
-                
-                if ($response == true){
-                    $result = true;
-                }
-            }
+        if (!isset($_POST['send'])) {
+            return false;
         }
 
-        return $result;
+        $title = ucfirst(strtolower(trim($_POST['gameTitle'])));
+        $company = $_POST['company'];
+        $category = $_POST['category'];
+        $year = $_POST['gameYear'];
+        $price = $_POST['gamePrice'];
+        $poster = trim($_POST['gamePoster']);
+        $description = trim($_POST['gameDescription']);
+
+        if ($title == '') {
+            return false;
+        }
+
+        $query = "UPDATE `games` SET `title`='$title',`publishYear`='$year',`companyId`='$company',`poster`='$poster',`description`='$description',`price`='$price',`categoryId`='$category' WHERE id = '$gameId';";
+        $db = new database();
+        $response = $db -> executeRun($query);
+            
+        if ($response != true){
+            return false;
+        }
+
+        return true;
     }
 
     public static function deleteGame($gameId) {
-        $result = false;
+        if (!isset($_POST['send'])) {
+            return false;
+        }
 
-        if (isset($_POST['send'])) {
-            $query = "DELETE FROM `games` WHERE `id` = '$gameId'";
-            $db = new database();
-            $response = $db -> executeRun($query);
+        $query = "DELETE FROM `games` WHERE `id` = '$gameId'";
+        $db = new database();
+        $response = $db -> executeRun($query);
 
-            if ($response == true){
-                $result = true;
-            }
+        if ($response != true){
+            return false;
         }
         
-        return $result;
+        return true;
     }
 }
 

@@ -12,15 +12,13 @@
 		</tr>
 	</thead>
 	<tbody>
-		<?php
-            foreach ($users as $k => $v) {
-                echo '<tr class="table-active">';
-                echo '<th scope="row"><p>'.($k + 1).'</p></th>';
-                echo '<td><p>'.$v['username'].'</p></th>';
-                echo '<td><p>'.$v['role'].'</p></th>';
-                echo '</tr>';
-            }
-		?>
+    <?php foreach ($users as $k => $v) { ?>
+        <tr class="table-active">
+        <th scope="row"><p><?php echo ($k + 1); ?></p></th>
+        <td><p><?php echo $v['username']; ?></p></th>
+        <td><p><?php echo $v['role']; ?></p></th>
+        </tr>
+    <?php } ?>
 	</tbody>
 </table>
 

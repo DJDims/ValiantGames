@@ -14,7 +14,7 @@
         <input class="form-control" type="password" placeholder="Password" name="password" />
     </div>
     <div class="form-group">
-        <button type="sumbit" class="btn btn-custom">Login</button>
+        <button type="sumbit" class="btn btn-custom" name="send">Login</button>
     </div>
 </form>
 

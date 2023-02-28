@@ -26,81 +26,82 @@ class BundleModel{
     }
 
     public static function addBundle() {
-        $result = false;
-        if (isset($_POST['send'])) {
-            $title = trim($_POST['bundleTitle']);
-            $price = $_POST['bundlePrice'];
-            $games = $_POST['bundleGames'];
-            
-            if ($title != '') {
-                $db = new database();
-                $query = "INSERT INTO `bundles`(`title`, `price`) VALUES ('$title', '$price')";
-                $response = $db -> executeRun($query);
-                
-                // $query = "SELECT id FROM `bundles` ORDER BY id DESC LIMIT 1";
-                $bundleId = $db -> getLastId();
-                // echo $bundleId;
-                var_dump($bundleId);
-                
-                foreach ($games as $k => $v) {
-                    $query = "INSERT INTO `game_bundle`(`gameId`, `bundleId`) VALUES ('$v','$bundleId')";
-                    $db -> executeRun($query);
-                }
-                
-                if ($response == true){
-                    $result = true;
-                }
-            }
+        if (!isset($_POST['send'])) {
+            return false;
         }
-        // return $result;
+        
+        $title = ucfirst(strtolower(trim($_POST['bundleTitle'])));
+        $price = $_POST['bundlePrice'];
+        $games = $_POST['bundleGames'];
+        
+        if ($title == '' || count($_POST['bundleGames']) == 0) {
+            return false;
+        }
+        
+        $db = new database();
+        $query = "INSERT INTO `bundles`(`title`, `price`) VALUES ('$title', '$price')";
+        $response = $db -> executeRun($query);
+        $bundleId = $db -> getLastId();
+                
+        foreach ($games as $k => $v) {
+            $query = "INSERT INTO `game_bundle`(`gameId`, `bundleId`) VALUES ('$v','$bundleId')";
+            $response = $db -> executeRun($query);
+        }
+                
+        if ($response != true){
+            return false;
+        }
+
+        return true;
     }
 
     public static function editBundle($bundleId) {
-        $result = false;
         if (isset($_POST['send'])) {
-            $title = trim($_POST['bundleTitle']);
-            $price = $_POST['bundlePrice'];
-            $games = $_POST['bundleGames'];
-            $updated_at = date("Y-m-d H:i:s");
-
-            if ($title != '') {
-                $query = "UPDATE `bundles` SET `title`='$title',`price`='$price',`updated_at`='$updated_at' WHERE id = '$bundleId'";
-                $db = new database();
-                $response = $db -> executeRun($query);
-                $query = "DELETE FROM `game_bundle` WHERE bundleId = '$bundleId'";
-                $response = $db -> executeRun($query);
-                
-                foreach ($games as $k => $v) {
-                    $query = "INSERT INTO `game_bundle`(`gameId`, `bundleId`) VALUES ('$v','$bundleId')";
-                    $db = new database();
-                    $db -> executeRun($query);
-                }
-                
-                if ($response == true){
-                    $result = true;
-                }
-            }
+            return false;
         }
 
-        return $result;
+        $title = ucfirst(strtolower(trim($_POST['bundleTitle'])));
+        $price = $_POST['bundlePrice'];
+        $games = $_POST['bundleGames'];
+
+        if ($title == '' || count($_POST['bundleGames']) == 0) {
+            return false;
+        }
+
+        $db = new database();
+        $query = "UPDATE `bundles` SET `title`='$title',`price`='$price' WHERE id = '$bundleId'";
+        $response = $db -> executeRun($query);
+        $query = "DELETE FROM `game_bundle` WHERE bundleId = '$bundleId'";
+        $response = $db -> executeRun($query);
+                
+        foreach ($games as $k => $v) {
+            $query = "INSERT INTO `game_bundle`(`gameId`, `bundleId`) VALUES ('$v','$bundleId')";
+            $response = $db -> executeRun($query);
+        }
+                
+        if ($response != true){
+            return false;
+        }
+
+        return true;
     }
 
     public static function deleteBundle($bundleId) {
-        $result = false;
-
         if (isset($_POST['send'])) {
-            $query = "DELETE FROM `bundles` WHERE `id` = '$bundleId'";
-            $db = new database();
-            $response = $db -> executeRun($query);
-            $query = "DELETE FROM `game_bundle` WHERE `bundleId` = '$bundleId'";
-            $response = $db -> executeRun($query);
+            return false;
+        }
 
-            if ($response == true){
-                $result = true;
-            }
+        $db = new database();
+        $query = "DELETE FROM `bundles` WHERE `id` = '$bundleId'";
+        $response = $db -> executeRun($query);
+        $query = "DELETE FROM `game_bundle` WHERE `bundleId` = '$bundleId'";
+        $response = $db -> executeRun($query);
+
+        if ($response != true){
+            return false;
         }
         
-        return $result;
+        return true;
     }
 }
 

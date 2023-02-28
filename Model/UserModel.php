@@ -26,20 +26,7 @@ class UserModel{
     }
 
     public static function findUsersByRole($rolename) {
-        switch($rolename) {
-            case 'USER':
-                $query = 'SELECT * FROM `users` WHERE `role` = 1 ORDER BY `username` ASC';
-                break;
-                
-            case 'MODERATOR':
-                $query = 'SELECT * FROM `users` WHERE `role` = 2 ORDER BY `username` ASC';
-                break;
-                
-            case 'ADMIN':
-                $query = 'SELECT * FROM `users` WHERE `role` = 3 ORDER BY `username` ASC';
-                break;
-        }
-
+        $query = "SELECT * FROM `users` WHERE `role` = '$rolename' ORDER BY `username` ASC";
         $db = new database();
         $response = $db -> getAll($query);
 
@@ -47,7 +34,7 @@ class UserModel{
     }
 
     public static function countUsers() {
-        $query = "SELECT COUNT(username) FROM users";
+        $query = "SELECT COUNT(id) FROM users";
         $db = new database();
         $response = $db -> getOne($query);
 
@@ -83,12 +70,16 @@ class UserModel{
     }
 
     public static function login(){
-        if (!isset($_POST['username']) || !isset($_POST['password']) || trim($_POST['username']) == "" || trim($_POST['password']) == "") {
+        if (!isset($_POST['send'])) {
             return false;
         }
         
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
+        
+        if ($username == "" || $password == "") {
+            return false;
+        }
 
         $query = "SELECT * FROM `users` WHERE `username` = '$username'";
         $db = new database();
@@ -119,10 +110,10 @@ class UserModel{
     }
 
     public static function register(){
-        if (!isset($_POST['username']) || !isset($_POST['password']) || !isset($_POST['confirmPassword']) || trim($_POST['username']) == "" || trim($_POST['password']) == "" || trim($_POST['confirmPassword']) == "") {
+        if (!isset($_POST['send'])) {
             return false;
         }
-        
+
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
         $confirmPassword = trim($_POST['confirmPassword']);
@@ -135,17 +126,22 @@ class UserModel{
 
         $query = "INSERT INTO `users`(`username`, `password`) VALUES ('$username', '$hashedPassword')";
         $db = new database();
-        $response = $db -> getOne($query);
+        $response = $db -> executeRun($query);
         
-        return $response;
+        return true;
     }
     
-    public static function addMoney() {
-        $addedMoney = $_POST['money'];
-        if($addedMoney == 0) {
-            return;
+    public static function addMoney($userId) {
+        if (!isset($_POST['send'])) {
+            return false;
         }
-        $userId = $_SESSION['userId'];
+
+        $addedMoney = $_POST['money'];
+
+        if($addedMoney == 0) {
+            return false;
+        }
+        
         $currentMoney = UserModel::findUserById($userId)['wallet'];
         $currentMoney += $addedMoney;
 

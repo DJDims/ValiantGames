@@ -18,7 +18,7 @@ class CompanyModel{
     }
 
     public static function countCompanies() {
-        $query = "SELECT COUNT(title) FROM `companies`";
+        $query = "SELECT COUNT(id) FROM `companies`";
         $db = new database();
         $response = $db -> getOne($query);
 
@@ -26,7 +26,7 @@ class CompanyModel{
     }
 
     public static function countGamesByCompanyId($companyId) {
-        $query = "SELECT COUNT(title) FROM `games` WHERE companyId = '$companyId'";
+        $query = "SELECT COUNT(id) FROM `games` WHERE companyId = '$companyId'";
         $db = new database();
         $response = $db -> getOne($query);
 
@@ -34,58 +34,63 @@ class CompanyModel{
     }
 
     public static function addCompany() {
-        $result = false;
-        if (isset($_POST['send'])) {
-            $title = trim($_POST['companyTitle']);
+        if (!isset($_POST['send'])) {
+            return false;
+        }
+        
+        $title = trim($_POST['companyTitle']);
 
-            if ($title != '') {
-                $query = "INSERT INTO `companies`(`title`) VALUES ('$title')";
-                $db = new database();
-                $response = $db -> executeRun($query);
-                
-                if ($response == true){
-                    $result = true;
-                }
-            }
+        if ($title == '') {
+            return false;
         }
 
-        return $result;
+        $query = "INSERT INTO `companies`(`title`) VALUES ('$title')";
+        $db = new database();
+        $response = $db -> executeRun($query);
+        
+        if ($response != true){
+            return false;
+        }
+
+        return true;
     }
 
     public static function editCompany($companyId) {
-        $result = false;
-        if (isset($_POST['send'])) {
-            $title = trim($_POST['companyTitle']);
-            $updated_at = date("Y-m-d H:i:s");
+        if (!isset($_POST['send'])) {
+            return false;
+        }
+        
+        $title = trim($_POST['companyTitle']);
 
-            if ($title != '') {
-                $query = "UPDATE `companies` SET `title`='$title',`updated_at`='$updated_at' WHERE id = '$companyId';";
-                $db = new database();
-                $response = $db -> executeRun($query);
-
-                if ($response == true){
-                    $result = true;
-                }
-            }
+        if ($title == '') {
+            return false;
         }
 
-        return $result;
+        $query = "UPDATE `companies` SET `title`='$title' WHERE id = '$companyId';";
+        $db = new database();
+        $response = $db -> executeRun($query);
+
+        if ($response != true){
+            return false;
+        }
+
+        return true;
     }
 
     public static function deleteCompany($companyId) {
-        $result = false;
+        if (!isset($_POST['send'])) {
+            return false;
+        }
 
-        if (isset($_POST['send'])) {
-            $query = "DELETE FROM `companies` WHERE `id` = '$companyId'";
-            $db = new database();
-            $response = $db -> executeRun($query);
+        $query = "DELETE FROM `companies` WHERE `id` = '$companyId'";
+        $db = new database();
+        $response = $db -> executeRun($query);
 
-            if ($response == true){
-                $result = true;
-            }
+        if ($response != true){
+            return false;
         }
         
-        return $result;
+        return true;
     }
 }
 

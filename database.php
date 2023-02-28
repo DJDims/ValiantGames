@@ -76,17 +76,7 @@ class database {
     }
 
     function getLastId() {
-        // try{
-        //     $result = $this->conn->prepare();
-        //     $result->execute();
-        //     $response = $this->conn->lastInsertId();
-            
-        //     return $response;
-            
-        // } catch (Exception $ex) {
-        //     echo "Error:".$ex->getMessage();
-        // }
-        $lastId = $this -> conn -> lastInsertId();
+        $lastId = $this->conn->lastInsertId();
         return $lastId;
     }
 }

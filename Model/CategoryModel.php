@@ -34,58 +34,63 @@ class CategoryModel{
     }
 
     public static function addCategory() {
-        $result = false;
-        if (isset($_POST['send'])) {
-            $title = trim($_POST['categoryTitle']);
-
-            if ($title != '') {
-                $query = "INSERT INTO `categories`(`categoryTitle`) VALUES ('$title')";
-                $db = new database();
-                $response = $db -> executeRun($query);
-                
-                if ($response == true){
-                    $result = true;
-                }
-            }
+        if (!isset($_POST['send'])) {
+            return false;
         }
 
-        return $result;
+        $title = trim($_POST['categoryTitle']);
+
+        if ($title == '') {
+            return false;
+        }
+
+        $query = "INSERT INTO `categories`(`categoryTitle`) VALUES ('$title')";
+        $db = new database();
+        $response = $db -> executeRun($query);
+        
+        if ($response != true){
+            return false;
+        }
+
+        return true;
     }
 
     public static function editCategory($categoryId) {
-        $result = false;
-        if (isset($_POST['send'])) {
-            $title = trim($_POST['categoryTitle']);
-            $updated_at = date("Y-m-d H:i:s");
+        if (!isset($_POST['send'])) {
+            return false;
+        }
 
-            if ($title != '') {
-                $query = "UPDATE `categories` SET `categoryTitle`='$title',`updated_at`='$updated_at' WHERE categoryId = '$categoryId';";
-                $db = new database();
-                $response = $db -> executeRun($query);
+        $title = trim($_POST['categoryTitle']);
 
-                if ($response == true){
-                    $result = true;
-                }
-            }
+        if ($title == '') {
+            return false;
+        }
+
+        $query = "UPDATE `categories` SET `categoryTitle`='$title' WHERE categoryId = '$categoryId';";
+        $db = new database();
+        $response = $db -> executeRun($query);
+
+        if ($response != true){
+            return false;
         }
         
-        return $result;
+        return true;
     }
 
     public static function deleteCategory($categoryId) {
-        $result = false;
-
-        if (isset($_POST['send'])) {
-            $query = "DELETE FROM `categories` WHERE `categoryId` = '$categoryId'";
-            $db = new database();
-            $response = $db -> executeRun($query);
-
-            if ($response == true){
-                $result = true;
-            }
+        if (!isset($_POST['send'])) {
+            return false;
         }
 
-        return $result;
+        $query = "DELETE FROM `categories` WHERE `categoryId` = '$categoryId'";
+        $db = new database();
+        $response = $db -> executeRun($query);
+
+        if ($response != true){
+            return false;
+        }
+
+        return true;
     }
 }
 

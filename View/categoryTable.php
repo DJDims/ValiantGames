@@ -14,16 +14,14 @@
         </tr>
     </thead>
     <tbody>
-        <?php
-        foreach ($categories as $k => $v) {
-            echo '<tr class="table-active">';
-            echo '<th scope="row"><p>' . ($k + 1) . '</p></th>';
-            echo '<td><p>' . $v['categoryTitle'] . '</p></th>';
-            echo '<td class="text-end"><a href="showEditCategory?' . $v['categoryId'] . '" class="btn btn-warning">Edit</td>';
-            echo '<td class="text-end"><a href="showDeleteCategory?' . $v['categoryId'] . '" class="btn btn-danger">Delete</td>';
-            echo '</tr>';
-        }
-        ?>
+    <?php foreach ($categories as $k => $v) { ?>
+        <tr class="table-active">
+            <th scope="row"><p><?php echo ($k + 1); ?></p></th>
+            <td><p><?php echo $v['categoryTitle']; ?></p></th>
+            <td class="text-end"><a href="showEditCategory?<?php echo $v['categoryId']; ?>" class="btn btn-warning">Edit</td>
+            <td class="text-end"><a href="showDeleteCategory?<?php echo $v['categoryId']; ?>" class="btn btn-danger">Delete</td>
+        </tr>
+    <?php } ?>
     </tbody>
 </table>
 

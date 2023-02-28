@@ -3,6 +3,7 @@
 class CategoryController{
     public static function showTableCategories() {
         $categories = CategoryModel::findAllCategories();
+        
         include_once('View/categoryTable.php');
         return;
     }

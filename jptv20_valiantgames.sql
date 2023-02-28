@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Фев 28 2023 г., 09:57
--- Версия сервера: 10.4.25-MariaDB
--- Версия PHP: 8.1.10
+-- Время создания: Фев 28 2023 г., 18:24
+-- Версия сервера: 10.4.27-MariaDB
+-- Версия PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bundles` (
   `id` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   `price` float NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -82,9 +82,9 @@ INSERT INTO `bundles` (`id`, `title`, `price`, `created_at`, `updated_at`) VALUE
 
 CREATE TABLE `categories` (
   `categoryId` int(11) NOT NULL,
-  `categoryTitle` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `categoryTitle` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -131,9 +131,9 @@ INSERT INTO `categories` (`categoryId`, `categoryTitle`, `created_at`, `updated_
 
 CREATE TABLE `companies` (
   `id` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -192,15 +192,15 @@ INSERT INTO `companies` (`id`, `title`, `created_at`, `updated_at`) VALUES
 
 CREATE TABLE `games` (
   `id` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   `publishYear` int(4) NOT NULL,
   `companyId` int(11) NOT NULL,
-  `poster` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `poster` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
   `price` float NOT NULL,
   `categoryId` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -278,7 +278,7 @@ CREATE TABLE `game_bundle` (
   `gameId` int(11) NOT NULL,
   `bundleId` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -291,10 +291,10 @@ CREATE TABLE `game_user` (
   `id` int(11) NOT NULL,
   `gameId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
-  `status` enum('WHISLIST','BUY') COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` enum('WISHLIST','BUY') NOT NULL DEFAULT 'WISHLIST',
   `price` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -305,13 +305,13 @@ CREATE TABLE `game_user` (
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `wallet` float NOT NULL,
-  `avatar` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `role` enum('USER','MODERATOR','ADMIN') COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `wallet` float NOT NULL DEFAULT 0,
+  `avatar` varchar(255) DEFAULT 'https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png',
+  `role` enum('USER','MODERATOR','ADMIN') NOT NULL DEFAULT 'USER',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -319,7 +319,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `wallet`, `avatar`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', '$2y$10$lyU2NVJ4svNrNFGIi1jPdO2yZC2iwFsv8xEeZ9oG9YpBKIx1AZJyW', 0, NULL, 'ADMIN', '2023-02-26 17:48:33', '2023-02-26 17:48:33');
+(1, 'admin', '$2y$10$lyU2NVJ4svNrNFGIi1jPdO2yZC2iwFsv8xEeZ9oG9YpBKIx1AZJyW', 0, 'https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png', 'ADMIN', '2023-02-26 17:48:33', '2023-02-26 17:48:33');
 
 --
 -- Индексы сохранённых таблиц
@@ -329,25 +329,29 @@ INSERT INTO `users` (`id`, `username`, `password`, `wallet`, `avatar`, `role`, `
 -- Индексы таблицы `bundles`
 --
 ALTER TABLE `bundles`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`title`);
 
 --
 -- Индексы таблицы `categories`
 --
 ALTER TABLE `categories`
-  ADD PRIMARY KEY (`categoryId`);
+  ADD PRIMARY KEY (`categoryId`),
+  ADD UNIQUE KEY `name` (`categoryTitle`);
 
 --
 -- Индексы таблицы `companies`
 --
 ALTER TABLE `companies`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`title`);
 
 --
 -- Индексы таблицы `games`
 --
 ALTER TABLE `games`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`title`),
   ADD KEY `publisher` (`companyId`),
   ADD KEY `categoryId` (`categoryId`);
 
@@ -356,6 +360,7 @@ ALTER TABLE `games`
 --
 ALTER TABLE `game_bundle`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique` (`gameId`,`bundleId`),
   ADD KEY `gameId` (`gameId`),
   ADD KEY `bundleId` (`bundleId`);
 
@@ -364,6 +369,7 @@ ALTER TABLE `game_bundle`
 --
 ALTER TABLE `game_user`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique` (`gameId`,`userId`),
   ADD KEY `gameId` (`gameId`),
   ADD KEY `userId` (`userId`);
 
@@ -371,7 +377,8 @@ ALTER TABLE `game_user`
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц

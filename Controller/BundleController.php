@@ -3,12 +3,14 @@
 class BundleController{
     public static function showTableBundles() {
         $bundles = BundleModel::findAllBundles();
+
         include_once('View/bundleTable.php');
         return;
     }
 
     public static function showAddBundle() {
         $games = GameModel::findAllGames();
+        
         include_once('View/bundleAdd.php');
         return;
     }
@@ -16,15 +18,15 @@ class BundleController{
     public static function addBundle() {
         $result = BundleModel::addBundle();
 
-        // if ($result == true) {
-        //     $_SESSION['message'] = 'Данные добавлены';
-        //     header('Location: showTableBundles');
-        // } else {
-        //     $error = 'Не удалось добавить данные';
-        //     include_once('View/bundleAdd.php');;
-        // }
+        if ($result == true) {
+            $_SESSION['message'] = 'Данные добавлены';
+            header('Location: showTableBundles');
+        } else {
+            $error = 'Не удалось добавить данные';
+            include_once('View/bundleAdd.php');;
+        }
 
-        // return;
+        return;
     }
 
     public static function showEditBundle($bundleId){

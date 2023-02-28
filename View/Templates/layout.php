@@ -64,22 +64,28 @@
 						<!-- ***** Menu Start ***** -->
 						<ul class="nav">
 							<li><a href="/" class="active">Home</a></li>
-								<?php
-									if (!isset($_SESSION['sessionId'])) {
-										echo '<li><a href="showLogin">LogIn</a></li>';
-									} else {
-										if ($_SESSION['role'] == 'ADMIN') {
-											echo '<li><a href="showTableGames">Games</a></li>';
-											echo '<li><a href="showTableCompanies">Companies</a></li>';
-											echo '<li><a href="showTableCategories">Categories</a></li>';
-											echo '<li><a href="showTableBundles">Bundles</a></li>';
-											echo '<li><a href="showTableUsers">Users</a></li>';
-										} else {
-											echo '<li><a href="browse.html">Browse</a></li>';
-										}
-										echo '<li id="loginButton" style="position: relative;"><a href="profile?'.$_SESSION['userId'].'">Profile <img src="'.$_SESSION['avatar'].'" class="userAvatar" alt=""></a><div style="display: none;"><a href="logout">Logout</a></div></li>';
-									}
-								?>
+							<?php if (!isset($_SESSION['sessionId'])) { ?>
+							<li><a href="showLogin">LogIn</a></li>
+							<?php } else { ?>
+							<?php if ($_SESSION['role'] == 'ADMIN') { ?>
+								<li><a href="showTableGames">Games</a></li>
+								<li><a href="showTableCompanies">Companies</a></li>
+								<li><a href="showTableCategories">Categories</a></li>
+								<li><a href="showTableBundles">Bundles</a></li>
+								<li><a href="showTableUsers">Users</a></li>
+							<?php } else { ?>
+								<li><a href="browse.html">Browse</a></li>
+							<?php } ?>
+								<li id="loginButton" style="position: relative;">
+									<a href="profile">Profile 
+										<img src="<?php echo $_SESSION['avatar']; ?>" class="userAvatar" alt="">
+									</a>
+									<div style="display: none;">
+										<a href="logout">Logout</a>
+									</div>
+								</li>
+							<?php } ?>
+								
 						</ul>
 						<a class='menu-trigger'>
 							<span>Menu</span>

@@ -32,50 +32,50 @@ $title = '';
 <!-- ***** Banner End ***** -->
 
 <!-- ***** Gaming Library Start ***** -->
-<?php
-    echo '<div class="gaming-library">';
-    echo '<div class="col-lg-12">';
-    echo '<div class="heading-section">';
-    echo '<h4>Your Wishlist</h4>';
-    foreach ($gamesBuyed as $k => $v) {
-        echo '<div class="item"><ul>';
-        echo '<li><img src="'.$v['poster'].'" alt="" class="templatemo-item"></li>';
-        echo '<li><h4>'.$v['title'].'</h4><span>'.$v['categoryTitle'].'</span></li>';
-        echo '<li><h4>Date Buyed</h4><span>'.$v['created_at'].'</span></li>';
-        echo '</ul></div>';
-    }
-    echo '</div>';
-    echo '</div>';
-    echo '<div class="col-lg-12">';
-    echo '<div class="main-button">';
-    echo '<a href="profile.html">View Your Wishlist</a>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
-    ?>
+<div class="gaming-library">
+    <div class="col-lg-12">
+        <div class="heading-section">
+        <h4>Your Library</h4>
+        <?php foreach ($gamesBuyed as $k => $v) { ?>
+            <div class="item">
+                <ul>
+                    <li><img src="<?php echo $v['poster']; ?>" alt="" class="templatemo-item"></li>
+                    <li><h4><?php echo $v['title']; ?></h4><span><?php echo $v['categoryTitle']; ?></span></li>
+                    <li><h4>Date Buyed</h4><span><?php echo $v['created_at']; ?></span></li>
+                </ul>
+            </div>
+        <?php } ?>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="main-button">
+            <a href="profile.html">View Your Library</a>
+        </div>
+    </div>
+</div>
 <!-- ***** Gaming Library End ***** -->
 <!-- ***** Wishlist Start ***** -->
-<?php
-    echo '<div class="gaming-library">';
-    echo '<div class="col-lg-12">';
-    echo '<div class="heading-section">';
-    echo '<h4>Your library</h4>';
-    foreach ($gamesWished as $k => $v) {
-        echo '<div class="item"><ul>';
-        echo '<li><img src="'.$v['poster'].'" alt="" class="templatemo-item"></li>';
-        echo '<li><h4>'.$v['title'].'</h4><span>'.$v['categoryTitle'].'</span></li>';
-        echo '<li><h4>Date Added</h4><span>'.$v['created_at'].'</span></li>';
-        echo '</ul></div>';
-    }
-    echo '</div>';
-    echo '</div>';
-    echo '<div class="col-lg-12">';
-    echo '<div class="main-button">';
-    echo '<a href="profile.html">View Your Wishlist</a>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
-    ?>
+<div class="gaming-library">
+    <div class="col-lg-12">
+        <div class="heading-section">
+        <h4>Your Wishlist</h4>
+        <?php foreach ($gamesWished as $k => $v) { ?>
+            <div class="item">
+                <ul>
+                    <li><img src="<?php echo $v['poster']; ?>" alt="" class="templatemo-item"></li>
+                    <li><h4><?php echo $v['title']; ?></h4><span><?php echo $v['categoryTitle']; ?></span></li>
+                    <li><h4>Date Whised</h4><span><?php echo $v['created_at']; ?></span></li>
+                </ul>
+            </div>
+        <?php } ?>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="main-button">
+            <a href="profile.html">View Your Wishlist</a>
+        </div>
+    </div>
+</div>
 <!-- ***** Wishlist End ***** -->
 
 <!-- ***** Modals ***** -->
@@ -96,7 +96,7 @@ $title = '';
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Add money</button>
+                <button type="submit" class="btn btn-primary" name="send">Add money</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </form>
