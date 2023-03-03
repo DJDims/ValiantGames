@@ -73,6 +73,22 @@ class UserController{
     public static function showBuyGame($gameId){
         return;
     }
+    
+    public static function buyGame($gameId){
+        return;
+    }
+    
+    public static function wishGame($gameId){
+        UserModel::wishGame($gameId);
+        
+        return;
+    }
+    
+    public static function unwishGame($gameId){
+        UserModel::unwishGame();
+
+        return;
+    }
 }
 
 ?>

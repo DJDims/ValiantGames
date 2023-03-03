@@ -51,6 +51,18 @@ switch($route){
 	case 'showBuyGame':
 		UserController::showBuyGame($id);
 		break;
+	
+	case 'buyGame':
+		UserController::buyGame($id);
+		break;
+	
+	case 'wishGame':
+		UserController::wishGame($id);
+		break;
+	
+	case 'unwishGame':
+		UserController::unwishGame($id);
+		break;
 //---------------users---------------
 //---------------companies---------------
 	case 'showTableCompanies':

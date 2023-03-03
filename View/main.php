@@ -26,17 +26,17 @@ $title = '';
     <div class="col-lg-12">
         <div class="heading-section">
             <h4>Your Wishlist</h4>
-<?php foreach ($wishList as $k => $v) { ?>
-            <div class="item">
-                <ul>
-                    <li><img src="<?php echo $v['poster']; ?>" alt="" class="templatemo-item"></li>
-                    <li><h4><?php echo $v['title']; ?></h4><span><?php echo $v['categoryTitle']; ?></span></li>
-                    <li><h4>Date Added</h4><span><?php echo $v['created_at']; ?></span></li>
-                    <li><h4>Price</h4><span><?php echo $v['price']; ?><i class="fa fa-eur"></i></span></li>
-                    <li><a class="btn btn-success col-5" href="showBuyGame?<?php echo $v['id']; ?>">Buy</a></li>
-                </ul>
-            </div>
-<?php } ?>
+            <?php foreach ($wishList as $k => $v) { ?>
+                <div class="item">
+                    <ul>
+                        <li><img src="<?php echo $v['poster']; ?>" alt="" class="templatemo-item"></li>
+                        <li><h4><?php echo $v['title']; ?></h4><span><?php echo $v['categoryTitle']; ?></span></li>
+                        <li><h4>Date Added</h4><span><?php echo $v['created_at']; ?></span></li>
+                        <li><h4>Price</h4><span><?php echo $v['price']; ?><i class="fa fa-eur"></i></span></li>
+                        <li><a class="btn btn-success col-5" href="showBuyGame?<?php echo $v['id']; ?>">Buy</a></li>
+                    </ul>
+                </div>
+            <?php } ?>
         </div>
     </div>
     <div class="col-lg-12">

@@ -62,11 +62,24 @@ class UserModel{
     }
 
     public static function wishGame($gameId) {
-        
+        $query = "INSERT INTO `game_user`(`gameId`, `userId`, `status`) VALUES ('','',1,'')";
+        $db = new database();
+        $response = $db -> getOne($query);
+    }
+
+    public static function unwishGame($gameId) {
+        $query = "DELETE FRO, `game_user` WHERE gameId = AND userId = ";
+        $db = new database();
+        $response = $db -> getOne($query);
     }
 
     public static function buyGame($gameId) {
+        $query = "INSERT INTO `game_user`(`gameId`, `userId`, `status`, `price`) VALUES ('','',2,'')";
         
+        $query = "SELECT * FROM `users` WHERE gameId = AND userId = ";
+        $query = "UPDATE `game_user` SET `status`= 2,`price`='' WHERE gameId = AND userId = ";
+        $db = new database();
+        $response = $db -> getOne($query);
     }
 
     public static function login(){
