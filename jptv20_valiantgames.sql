@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Фев 28 2023 г., 18:24
+-- Время создания: Мар 06 2023 г., 18:30
 -- Версия сервера: 10.4.27-MariaDB
 -- Версия PHP: 8.2.0
 
@@ -182,7 +182,8 @@ INSERT INTO `companies` (`id`, `title`, `created_at`, `updated_at`) VALUES
 (39, 'Take-Two Interactive', '2023-02-26 17:48:32', '2023-02-26 17:48:32'),
 (40, 'Riot Games', '2023-02-26 17:48:32', '2023-02-26 17:48:32'),
 (41, 'Blizzard', '2023-02-26 17:48:32', '2023-02-26 17:48:32'),
-(42, 'Deconstructeam', '2023-02-26 17:48:32', '2023-02-26 17:48:32');
+(42, 'Deconstructeam', '2023-02-26 17:48:32', '2023-02-26 17:48:32'),
+(43, 'ZA/UM', '2023-03-06 17:11:10', '2023-03-06 17:11:10');
 
 -- --------------------------------------------------------
 
@@ -199,7 +200,7 @@ CREATE TABLE `games` (
   `description` varchar(255) DEFAULT NULL,
   `price` float NOT NULL,
   `categoryId` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `g_created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -207,7 +208,7 @@ CREATE TABLE `games` (
 -- Дамп данных таблицы `games`
 --
 
-INSERT INTO `games` (`id`, `title`, `publishYear`, `companyId`, `poster`, `description`, `price`, `categoryId`, `created_at`, `updated_at`) VALUES
+INSERT INTO `games` (`id`, `title`, `publishYear`, `companyId`, `poster`, `description`, `price`, `categoryId`, `g_created_at`, `updated_at`) VALUES
 (1, 'BioShock', 2007, 9, 'https://m.media-amazon.com/images/M/MV5BNjBkZmI4NzktZTJmMC00NDNlLTk2M2ItNGEwODUxZGEwNmZiXkEyXkFqcGdeQXVyNTgyNTA4MjM@._V1_FMjpg_UX1000_.jpg', '', 10.99, 5, '2023-02-28 04:58:30', '2023-02-28 04:58:30'),
 (2, 'Bioshock 2', 2010, 9, 'https://cdn1.epicgames.com/offer/304724b675974566b1d7e23af80a1f52/EGS_BioShock2Remastered_MassMediaGames_S2_1200x1600-9ce67143723d05cda671b3e966732fd7', '', 19.99, 5, '2023-02-28 05:02:48', '2023-02-28 05:17:23'),
 (3, 'Bioshock 2 minervas den', 2013, 9, 'https://s1.gaming-cdn.com/images/products/3813/orig-fallback-v1/bioshock-2-minerva-s-den-pc-mac-game-steam-cover.jpg?v=1649692276', '', 9.99, 5, '2023-02-28 05:04:03', '2023-02-28 05:17:29'),
@@ -250,7 +251,7 @@ INSERT INTO `games` (`id`, `title`, `publishYear`, `companyId`, `poster`, `descr
 (40, 'DEATHLOOP', 2021, 17, 'https://media.gamestop.com/i/gamestop/11112058/Deathloop---PlayStation-5?$pdp$', '', 59.99, 8, '2023-02-28 06:23:32', '2023-02-28 06:23:32'),
 (41, 'Control Ultimate Edition', 2020, 20, 'https://image.api.playstation.com/vulcan/ap/rnd/202008/2111/kZuu7RcHultdoVUuGsReuGcq.png', '', 39.99, 25, '2023-02-28 06:24:48', '2023-02-28 06:25:25'),
 (42, 'Alan Wake', 2012, 20, 'https://cdn1.epicgames.com/salesEvent/salesEvent/en_Remedy_DEER_S2_1200x1600_1200x1600-43dd4a2f28f9edbf0ed1461339fc11d4', '', 12.49, 25, '2023-02-28 06:26:22', '2023-02-28 06:26:22'),
-(43, 'Disco Elysium - The Final Cut', 2019, 31, 'https://m.media-amazon.com/images/M/MV5BY2UxMTY2OTUtMzBlMy00Zjk4LThmY2UtMzVhOTlkOWEwYjdkXkEyXkFqcGdeQXVyMTMxNDI1OTQx._V1_.jpg', '', 39.99, 16, '2023-02-28 06:29:53', '2023-02-28 06:29:53'),
+(43, 'Disco Elysium - The Final Cut', 2019, 43, 'https://m.media-amazon.com/images/M/MV5BY2UxMTY2OTUtMzBlMy00Zjk4LThmY2UtMzVhOTlkOWEwYjdkXkEyXkFqcGdeQXVyMTMxNDI1OTQx._V1_.jpg', '', 39.99, 16, '2023-02-28 06:29:53', '2023-03-06 17:11:42'),
 (44, 'S.T.A.L.K.E.R.: Shadow of Chernobyl', 2007, 2, 'https://m.media-amazon.com/images/M/MV5BYTE5MDJkMzQtZjFmYi00NzgyLWE2YmQtNzA2NmY4Mjk0MjFkXkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_.jpg', '', 14.99, 16, '2023-02-28 06:30:59', '2023-02-28 06:32:22'),
 (45, 'S.T.A.L.K.E.R.: Clear Sky', 2008, 2, 'https://steamuserimages-a.akamaihd.net/ugc/1849288437186891461/637551BFEB547BB5A5B39F6A18AF4FCF0902514E/?imw=512&imh=507&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true', '', 9.99, 16, '2023-02-28 06:32:04', '2023-02-28 06:32:04'),
 (46, 'S.T.A.L.K.E.R.: Call of Pripyat', 2010, 2, 'https://m.media-amazon.com/images/M/MV5BNTdkZTYyZWEtNGE2Yi00MzY3LWFhOWQtY2M1MzFmNzFhYzg5XkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_.jpg', '', 10.99, 16, '2023-02-28 06:33:48', '2023-02-28 06:33:48'),
@@ -265,7 +266,7 @@ INSERT INTO `games` (`id`, `title`, `publishYear`, `companyId`, `poster`, `descr
 (55, 'Half-Life 2: Episode One', 2006, 5, 'https://upload.wikimedia.org/wikipedia/en/thumb/5/5b/Half-Life_2_-_Episode_One.jpg/220px-Half-Life_2_-_Episode_One.jpg', '', 7.79, 5, '2023-02-28 06:46:38', '2023-02-28 06:46:38'),
 (56, 'Half-Life 2: Episode Two', 2007, 5, 'https://upload.wikimedia.org/wikipedia/en/thumb/2/2d/Half-Life_2_Episode_Two_title.jpg/220px-Half-Life_2_Episode_Two_title.jpg', '', 6.59, 5, '2023-02-28 06:47:51', '2023-02-28 06:47:51'),
 (57, 'Left 4 Dead', 2008, 5, 'https://upload.wikimedia.org/wikipedia/en/5/5b/Left4Dead_Windows_cover.jpg', '', 9.75, 27, '2023-02-28 06:49:14', '2023-02-28 06:49:14'),
-(58, 'Left 4 dead 2', 2009, 5, '', '', 9.75, 3, '2023-02-28 06:50:13', '2023-02-28 06:50:13');
+(58, 'Left 4 dead 2', 2009, 5, 'https://m.media-amazon.com/images/M/MV5BZDE0YmM0OWEtMDljMS00ODYyLWE4ZmYtNjJjMzg0MWMwN2MwXkEyXkFqcGdeQXVyNTgyNTA4MjM@._V1_.jpg', '', 9.75, 3, '2023-02-28 06:50:13', '2023-03-06 17:26:35');
 
 -- --------------------------------------------------------
 
@@ -400,7 +401,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `companies`
 --
 ALTER TABLE `companies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT для таблицы `games`

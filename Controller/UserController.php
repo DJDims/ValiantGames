@@ -75,6 +75,8 @@ class UserController{
     }
     
     public static function buyGame($gameId){
+        UserModel::buyGame($gameId, $_SESSION['userId']);
+        GameController::showDetails($gameId);
         return;
     }
     

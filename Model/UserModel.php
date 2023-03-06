@@ -137,13 +137,26 @@ class UserModel{
         $response = $db -> executeRun($query);
     }
 
-    public static function buyGame($gameId) {
-        $query = "INSERT INTO `game_user`(`gameId`, `userId`, `status`, `price`) VALUES ('','',2,'')";
-        
-        $query = "SELECT * FROM `users` WHERE gameId = AND userId = ";
-        $query = "UPDATE `game_user` SET `status`= 2,`price`='' WHERE gameId = AND userId = ";
+    public static function buyGame($gameId, $userId) {
         $db = new database();
+        $currentMoney = UserModel::findUserById($userId)['wallet'];
+        $gamePrice = gameModel::findGameById($gameId)['price'];
+
+        $query = "SELECT * FROM `game_user` WHERE gameId = '$gameId' AND userId = '$userId'";
         $response = $db -> getOne($query);
+        
+        if ($response) {
+            $query = "UPDATE `game_user` SET `status`= 2,`price`='$gamePrice' WHERE gameId = AND userId = ";
+            $db -> executeRun($query);
+        } else {
+            $query = "INSERT INTO `game_user`(`gameId`, `userId`, `status`, `price`) VALUES ('$gameId','$userId',2,'$gamePrice')";
+            $db -> executeRun($query);
+        }
+        
+        $currentMoney -= $gamePrice;
+        $query = "UPDATE `users` SET `wallet`='$currentMoney' WHERE id = '$userId'";
+        $db -> executeRun($query);
+        
     }
 
     public static function addMoney($userId) {

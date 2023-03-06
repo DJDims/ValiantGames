@@ -10,7 +10,7 @@ class GameModel{
     }
 
     public static function findGameById($gameId) {
-        $query = "SELECT * FROM `games` INNER JOIN categories ON games.categoryId = categories.categoryId INNER JOIN companies ON games.companyId = companies.companyId  WHERE id = '$gameId'";
+        $query = "SELECT * FROM `games` INNER JOIN categories ON games.categoryId = categories.categoryId INNER JOIN companies ON games.companyId = companies.companyId WHERE id = '$gameId'";
         $db = new database();
         $response = $db -> getOne($query);
 
@@ -54,6 +54,14 @@ class GameModel{
             array_push($games, $r);
         }
         return $games;
+    }
+
+    public static function findGamesOrderByDateAdd() {
+        $query = "SELECT * FROM `games` INNER JOIN categories ON games.categoryId = categories.categoryId ORDER BY g_created_at DESC LIMIT 16";
+        $db = new database();
+        $response = $db -> getAll($query);
+
+        return $response;
     }
 
     public static function findLibrary($userId) {
@@ -121,7 +129,7 @@ class GameModel{
         if ($title == '') {
             return false;
         }
-        $query = "INSERT INTO `games`(`title`, `companyId`, `categoryId`, `publishYear`, `poster`, `price`, `description`) VALUES ('$title','$company','$category','$year','$poster','$price','$description');";
+        $query = "INSERT INTO `games`(`title`, `companyId`, `categoryId`, `publishYear`, `poster`, `price`, `description`) VALUES ('$title','$company','$category','$year','$poster','$price','$description')";
         $db = new database();
         $response = $db -> executeRun($query);
         
@@ -149,7 +157,7 @@ class GameModel{
             return false;
         }
 
-        $query = "UPDATE `games` SET `title`='$title',`publishYear`='$year',`companyId`='$company',`poster`='$poster',`description`='$description',`price`='$price',`categoryId`='$category' WHERE id = '$gameId';";
+        $query = "UPDATE `games` SET `title`='$title',`publishYear`='$year',`companyId`='$company',`poster`='$poster',`description`='$description',`price`='$price',`categoryId`='$category' WHERE id = '$gameId'";
         $db = new database();
         $response = $db -> executeRun($query);
             

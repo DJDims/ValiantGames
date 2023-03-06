@@ -10,6 +10,7 @@ class MainController {
 
     public static function showMain() {
         $popGames = GameModel::findGamesOrderByPurchases();
+        $newGames = GameModel::findGamesOrderByDateAdd();
 
         if (isset($_SESSION['userId'])) {
             $wishList = GameModel::findWhisList($_SESSION['userId']);

@@ -29,9 +29,11 @@ $title = '';
                     <?php if($userStatus == NULL) { ?>
                         <a class="btn btn-success" href="buyGame?<?php echo $game['id'] ?>">Buy game</a>
                         <a class="btn btn-primary" href="wishGame?<?php echo $game['id'] ?>">Wish game</a>
-                    <?php } elseif($userStatus['status'] == 'WISHLIST') { ?>
+                    <?php } elseif($userStatus['status'] == 'WISHED') { ?>
                         <a class="btn btn-success" href="buyGame?<?php echo $game['id'] ?>">Buy game</a>
                         <a class="btn btn-primary" href="unwishGame?<?php echo $game['id'] ?>">Unwish game</a>
+                    <?php } else { ?>
+                        <p>Игра уже куплена</p>
                     <?php } ?>
                 </div>
             </div>
