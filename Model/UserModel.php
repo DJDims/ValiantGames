@@ -57,32 +57,8 @@ class UserModel{
         return $response;
     }
 
-    public static function editUser($id) {
-        
-    }
-
-    public static function wishGame($gameId) {
-        $query = "INSERT INTO `game_user`(`gameId`, `userId`, `status`) VALUES ('','',1,'')";
-        $db = new database();
-        $response = $db -> getOne($query);
-    }
-
-    public static function unwishGame($gameId) {
-        $query = "DELETE FRO, `game_user` WHERE gameId = AND userId = ";
-        $db = new database();
-        $response = $db -> getOne($query);
-    }
-
-    public static function buyGame($gameId) {
-        $query = "INSERT INTO `game_user`(`gameId`, `userId`, `status`, `price`) VALUES ('','',2,'')";
-        
-        $query = "SELECT * FROM `users` WHERE gameId = AND userId = ";
-        $query = "UPDATE `game_user` SET `status`= 2,`price`='' WHERE gameId = AND userId = ";
-        $db = new database();
-        $response = $db -> getOne($query);
-    }
-
     public static function login(){
+
         if (!isset($_POST['send'])) {
             return false;
         }
@@ -108,6 +84,7 @@ class UserModel{
             $_SESSION['avatar'] = $response['avatar'];
             $_SESSION['role'] = $response['role'];
         }
+
 
         return true;
     }
@@ -143,7 +120,32 @@ class UserModel{
         
         return true;
     }
-    
+
+    public static function editUser($id) {
+        
+    }
+
+    public static function wishGame($gameId, $userId) {
+        $query = "INSERT INTO `game_user`(`gameId`, `userId`) VALUES ('$gameId','$userId')";
+        $db = new database();
+        $response = $db -> executeRun($query);
+    }
+
+    public static function unwishGame($gameId, $userId) {
+        $query = "DELETE FROM `game_user` WHERE gameId = '$gameId' AND userId = '$userId'";
+        $db = new database();
+        $response = $db -> executeRun($query);
+    }
+
+    public static function buyGame($gameId) {
+        $query = "INSERT INTO `game_user`(`gameId`, `userId`, `status`, `price`) VALUES ('','',2,'')";
+        
+        $query = "SELECT * FROM `users` WHERE gameId = AND userId = ";
+        $query = "UPDATE `game_user` SET `status`= 2,`price`='' WHERE gameId = AND userId = ";
+        $db = new database();
+        $response = $db -> getOne($query);
+    }
+
     public static function addMoney($userId) {
         if (!isset($_POST['send'])) {
             return false;

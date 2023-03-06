@@ -18,7 +18,7 @@
         <input class="form-control" type="password" placeholder="Confirm password" name="confirmPassword" />
     </div>
     <div class="form-group">
-        <button type="sumbit" class="btn btn-custom">Login</button>
+        <button type="sumbit" name="send" class="btn btn-custom">Login</button>
     </div>
 </form>
 

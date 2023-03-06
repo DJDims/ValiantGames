@@ -34,7 +34,7 @@ class UserController{
         $result = UserModel::register();
 
         if (isset($result) && $result == true) {
-            MainController::showMain();
+            UserController::login();
         } else {
             include_once('View/registerForm.php');
         }
@@ -63,8 +63,8 @@ class UserController{
     }
 
     public static function addMoney() {
-        $userId = $_SESSION['userId'];
-        $result = UserModel::addMoney($userId);
+        // $userId = $_SESSION['userId'];
+        $result = UserModel::addMoney($_SESSION['userId']);
 
         UserController::showProfile();
         return;
@@ -79,14 +79,14 @@ class UserController{
     }
     
     public static function wishGame($gameId){
-        UserModel::wishGame($gameId);
-        
+        UserModel::wishGame($gameId, $_SESSION['userId']);
+        GameController::showDetails($gameId);
         return;
     }
     
     public static function unwishGame($gameId){
-        UserModel::unwishGame();
-
+        UserModel::unwishGame($gameId, $_SESSION['userId']);
+        GameController::showDetails($gameId);
         return;
     }
 }

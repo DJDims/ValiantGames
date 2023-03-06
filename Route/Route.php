@@ -150,6 +150,10 @@ switch($route){
 	case 'deleteGame':
 		GameController::deleteGame($id);
 		break;
+
+	case 'showDetails':
+		GameController::showDetails($id);
+		break;
 //---------------games---------------
 //---------------bundles---------------
 	case 'showTableBundles':

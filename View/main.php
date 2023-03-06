@@ -60,14 +60,16 @@ $title = '';
             <div class="row">
             <?php foreach ($popGames as $k => $v) { ?>
                 <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                        <img src="<?php echo $v['poster']; ?>" alt="" />
-                            <h4><?php echo $v['title']; ?><br><span><?php echo $v['categoryTitle']; ?></span></h4>
-                        <ul>
-                            <li><?php echo $v['price']; ?><i class="fa fa-eur"></i></li>
-                            <li><i class="fa fa-download"></i> 2.3M</li>
-                        </ul>
-                    </div>
+                    <a href="showDetails?<?php echo $v['id']; ?>">
+                        <div class="item">
+                            <img src="<?php echo $v['poster']; ?>" alt="" />
+                                <h4><?php echo $v['title']; ?><br><span><?php echo $v['categoryTitle']; ?></span></h4>
+                            <ul>
+                                <li><?php echo $v['price']; ?><i class="fa fa-eur"></i></li>
+                                <li><i class="fa fa-download"></i> 2.3M</li>
+                            </ul>
+                        </div>
+                    </a>
                 </div>
             <?php } ?>
                 <div class="col-lg-12">

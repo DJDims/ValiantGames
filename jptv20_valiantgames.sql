@@ -291,7 +291,7 @@ CREATE TABLE `game_user` (
   `id` int(11) NOT NULL,
   `gameId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
-  `status` enum('WISHLIST','BUY') NOT NULL DEFAULT 'WISHLIST',
+  `status` enum('WISHED','BUY') NOT NULL DEFAULT 'WISHED',
   `price` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()

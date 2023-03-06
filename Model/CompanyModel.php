@@ -2,7 +2,7 @@
 
 class CompanyModel{
     public static function findAllCompanies() {
-        $query = "SELECT * FROM `companies` ORDER BY `title` ASC";
+        $query = "SELECT * FROM `companies` ORDER BY `companyTitle` ASC";
         $db = new database();
         $response = $db -> getAll($query);
 
@@ -10,7 +10,7 @@ class CompanyModel{
     }
 
     public static function findCompanyById($companyId) {
-        $query = "SELECT * FROM `companies` WHERE id ='$companyId'";
+        $query = "SELECT * FROM `companies` WHERE companyId ='$companyId'";
         $db = new database();
         $response = $db -> getOne($query);
 
@@ -44,7 +44,7 @@ class CompanyModel{
             return false;
         }
 
-        $query = "INSERT INTO `companies`(`title`) VALUES ('$title')";
+        $query = "INSERT INTO `companies`(`companyTitle`) VALUES ('$title')";
         $db = new database();
         $response = $db -> executeRun($query);
         
@@ -66,7 +66,7 @@ class CompanyModel{
             return false;
         }
 
-        $query = "UPDATE `companies` SET `title`='$title' WHERE id = '$companyId';";
+        $query = "UPDATE `companies` SET `companyTitle`='$title' WHERE companyId = '$companyId';";
         $db = new database();
         $response = $db -> executeRun($query);
 
@@ -82,7 +82,7 @@ class CompanyModel{
             return false;
         }
 
-        $query = "DELETE FROM `companies` WHERE `id` = '$companyId'";
+        $query = "DELETE FROM `companies` WHERE `companyId` = '$companyId'";
         $db = new database();
         $response = $db -> executeRun($query);
 

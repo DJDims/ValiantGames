@@ -76,6 +76,14 @@ class GameController{
         
         return;
     }
+
+    public static function showDetails($gameId) {
+        $game = GameModel::findGameById($gameId);
+        $userStatus = GameModel::findUserStatus($gameId, $_SESSION['userId']);
+
+        include_once('View/gameDetails.php');
+        return;
+    }
 }
 
 ?>
