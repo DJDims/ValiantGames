@@ -22,7 +22,7 @@
     <div class="form-group">
         <select class="form-control" name="company" required>
         <?php foreach ($companies as $k => $v) { ?>
-            <option value="<?php echo $v['id']; ?>"><?php echo $v['title']; ?></option>
+            <option value="<?php echo $v['companyId']; ?>"><?php echo $v['companyTitle']; ?></option>
         <?php } ?>
         </select>
     </div>

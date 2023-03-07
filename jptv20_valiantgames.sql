@@ -130,8 +130,8 @@ INSERT INTO `categories` (`categoryId`, `categoryTitle`, `created_at`, `updated_
 --
 
 CREATE TABLE `companies` (
-  `id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
+  `companyId` int(11) NOT NULL,
+  `companyTitle` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

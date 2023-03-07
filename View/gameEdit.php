@@ -23,9 +23,9 @@
         <select class="form-control" name="company" required>
         <?php foreach ($companies as $k => $v) { ?>
         <?php if ($v['id'] == $game['companyId']) { ?>
-            <option value="<?php echo $v['id']; ?>" selected><?php echo $v['title']; ?></option>
+            <option value="<?php echo $v['companyId']; ?>" selected><?php echo $v['companyTitle']; ?></option>
         <?php } else { ?>
-            <option value="<?php echo $v['id']; ?>"><?php echo $v['title']; ?></option>
+            <option value="<?php echo $v['companyId']; ?>"><?php echo $v['companyTitle']; ?></option>
         <?php } ?>
         <?php } ?>
         </select>

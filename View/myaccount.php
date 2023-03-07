@@ -85,26 +85,26 @@ $title = '';
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Add money</h5>
-            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <form action="addMoney" method="POST">
-            <div class="modal-body">
-                <div class="form-group">
-                    <input class="form-control" type="number" min="0" value="0" name="money"/>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="addMoney" method="POST">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input class="form-control" type="number" min="0" value="0" name="money"/>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" name="send">Add money</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </form>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" name="send">Add money</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 <!-- ***** Add Money Modal ***** -->
-
+<!-- ***** Modals ***** -->
 
 <script src="../Public/js/account.js"></script>
 

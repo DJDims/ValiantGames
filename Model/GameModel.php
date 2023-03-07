@@ -10,7 +10,7 @@ class GameModel{
     }
 
     public static function findGameById($gameId) {
-        $query = "SELECT * FROM `games` INNER JOIN categories ON games.categoryId = categories.categoryId INNER JOIN companies ON games.companyId = companies.companyId WHERE id = '$gameId'";
+        $query = "SELECT * FROM `games` INNER JOIN categories ON games.categoryId = categories.categoryId INNER JOIN companies ON games.companyId = companies.companyId WHERE games.id = '$gameId'";
         $db = new database();
         $response = $db -> getOne($query);
 

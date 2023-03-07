@@ -8,7 +8,7 @@
         <input class="form-control" type="text" placeholder="Game title" readonly value="<?php echo $game['title']?>" />
     </div>
     <div class="form-group">
-        <input class="form-control" type="text" placeholder="Game company" readonly value="<?php echo $company['title']?>" />
+        <input class="form-control" type="text" placeholder="Game company" readonly value="<?php echo $company['companyTitle']?>" />
     </div>
     <div class="form-group">
         <input class="form-control" type="text" placeholder="Game category" readonly value="<?php echo $category['categoryTitle']?>" />

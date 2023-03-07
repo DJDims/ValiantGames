@@ -56,9 +56,10 @@ class BundleModel{
     }
 
     public static function editBundle($bundleId) {
-        if (isset($_POST['send'])) {
+        if (!isset($_POST['send'])) {
             return false;
         }
+
 
         $title = ucfirst(strtolower(trim($_POST['bundleTitle'])));
         $price = $_POST['bundlePrice'];
@@ -87,14 +88,14 @@ class BundleModel{
     }
 
     public static function deleteBundle($bundleId) {
-        if (isset($_POST['send'])) {
+        if (!isset($_POST['send'])) {
             return false;
         }
-
+        
         $db = new database();
-        $query = "DELETE FROM `bundles` WHERE `id` = '$bundleId'";
-        $response = $db -> executeRun($query);
         $query = "DELETE FROM `game_bundle` WHERE `bundleId` = '$bundleId'";
+        $response = $db -> executeRun($query);
+        $query = "DELETE FROM `bundles` WHERE `id` = '$bundleId'";
         $response = $db -> executeRun($query);
 
         if ($response != true){
