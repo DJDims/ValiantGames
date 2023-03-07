@@ -19,13 +19,16 @@ class BundleController{
         $result = BundleModel::addBundle();
 
         if ($result == true) {
-            $_SESSION['message'] = 'Данные добавлены';
-            header('Location: showTableBundles');
+            $_SESSION['alert']['message'] = 'Данные добавлены';
+            $_SESSION['alert']['type'] = 'alert-success';
+            $_SESSION['alert']['icon'] = '#check-circle-fill';
         } else {
-            $error = 'Не удалось добавить данные';
-            include_once('View/bundleAdd.php');;
+            $_SESSION['alert']['message'] = 'Не удалось добавить данные';
+            $_SESSION['alert']['type'] = 'alert-danger';
+            $_SESSION['alert']['icon'] = '#exclamation-triangle-fill';
         }
-
+        
+        header('Location: showTableBundles');
         return;
     }
 
@@ -41,13 +44,16 @@ class BundleController{
         $result = BundleModel::editBundle($bundleId);
 
         if ($result == true) {
-            $_SESSION['message'] = 'Данные обновлены';
-            header('Location: showTableBundles');
+            $_SESSION['alert']['message'] = 'Данные обновлены';
+            $_SESSION['alert']['type'] = 'alert-success';
+            $_SESSION['alert']['icon'] = '#check-circle-fill';
         } else {
-            $error = 'Не удалось обновить данные';
-            include_once('View/bundleEdit.php');
+            $_SESSION['alert']['message'] = 'Не удалось обновить данные';
+            $_SESSION['alert']['type'] = 'alert-danger';
+            $_SESSION['alert']['icon'] = '#exclamation-triangle-fill';
         }
-
+        
+        header('Location: showTableBundles');
         return;
     }
     
@@ -63,13 +69,16 @@ class BundleController{
         $result = BundleModel::deleteBundle($bundleId);
 
         if ($result == true) {
-            $_SESSION['message'] = 'Данные удалены';
-            header('Location: showTableBundles');
+            $_SESSION['alert']['message'] = 'Данные удалены';
+            $_SESSION['alert']['type'] = 'alert-success';
+            $_SESSION['alert']['icon'] = '#check-circle-fill';
         } else {
-            $error = 'Не удалось удалить данные';
-            include_once('View/bundleDelete.php');
+            $_SESSION['alert']['message'] = 'Не удалось удалить данные';
+            $_SESSION['alert']['type'] = 'alert-danger';
+            $_SESSION['alert']['icon'] = '#exclamation-triangle-fill';
         }
         
+        header('Location: showTableBundles');
         return;
     }
 }

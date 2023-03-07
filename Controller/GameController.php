@@ -20,13 +20,16 @@ class GameController{
         $result = GameModel::addGame();
 
         if ($result == true) {
-            $_SESSION['message'] = 'Данные добавлены';
-            header('Location: showTableGames');
+            $_SESSION['alert']['message'] = 'Данные добавлены';
+            $_SESSION['alert']['type'] = 'alert-success';
+            $_SESSION['alert']['icon'] = '#check-circle-fill';
         } else {
-            $error = 'Не удалось добавить данные';
-            include_once('View/gameAdd.php');
+            $_SESSION['alert']['message'] = 'Не удалось добавить данные';
+            $_SESSION['alert']['type'] = 'alert-danger';
+            $_SESSION['alert']['icon'] = '#exclamation-triangle-fill';
         }
-
+        
+        header('Location: showTableGames');
         return;
     }
 
@@ -43,13 +46,16 @@ class GameController{
         $result = GameModel::editGame($gameId);
 
         if ($result == true) {
-            $_SESSION['message'] = 'Данные обновлены';
-            header('Location: showTableGames');
+            $_SESSION['alert']['message'] = 'Данные обновлены';
+            $_SESSION['alert']['type'] = 'alert-success';
+            $_SESSION['alert']['icon'] = '#check-circle-fill';
         } else {
-            $error = 'Не удалось обновить данные';
-            include_once('View/gameEdit.php');
+            $_SESSION['alert']['message'] = 'Не удалось обновить данные';
+            $_SESSION['alert']['type'] = 'alert-danger';
+            $_SESSION['alert']['icon'] = '#exclamation-triangle-fill';
         }
-
+        
+        header('Location: showTableGames');
         return;
     }
 
@@ -67,13 +73,16 @@ class GameController{
         $result = GameModel::deleteGame($gameId);
 
         if ($result == true) {
-            $_SESSION['message'] = 'Данные удалены';
-            header('Location: showTableGames');
+            $_SESSION['alert']['message'] = 'Данные удалены';
+            $_SESSION['alert']['type'] = 'alert-success';
+            $_SESSION['alert']['icon'] = '#check-circle-fill';
         } else {
-            $error = 'Не удалось удалить данные';
-            include_once('View/gameDelete.php');
+            $_SESSION['alert']['message'] = 'Не удалось удалить данные';
+            $_SESSION['alert']['type'] = 'alert-danger';
+            $_SESSION['alert']['icon'] = '#exclamation-triangle-fill';
         }
         
+        header('Location: showTableGames');
         return;
     }
 

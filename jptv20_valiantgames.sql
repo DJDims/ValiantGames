@@ -140,7 +140,7 @@ CREATE TABLE `companies` (
 -- Дамп данных таблицы `companies`
 --
 
-INSERT INTO `companies` (`id`, `title`, `created_at`, `updated_at`) VALUES
+INSERT INTO `companies` (`companyId`, `companyTitle`, `created_at`, `updated_at`) VALUES
 (1, 'ASkii Soft', '2023-02-26 17:48:32', '2023-02-26 17:48:32'),
 (2, 'GSC Gameworld', '2023-02-26 17:48:32', '2023-02-26 17:48:32'),
 (3, 'CD Project Red', '2023-02-26 17:48:32', '2023-02-26 17:48:32'),
@@ -344,8 +344,8 @@ ALTER TABLE `categories`
 -- Индексы таблицы `companies`
 --
 ALTER TABLE `companies`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`title`);
+  ADD PRIMARY KEY (`companyId`),
+  ADD UNIQUE KEY `name` (`companyTitle`);
 
 --
 -- Индексы таблицы `games`
@@ -401,7 +401,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `companies`
 --
 ALTER TABLE `companies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `companyId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT для таблицы `games`
@@ -435,7 +435,7 @@ ALTER TABLE `users`
 -- Ограничения внешнего ключа таблицы `games`
 --
 ALTER TABLE `games`
-  ADD CONSTRAINT `games_ibfk_1` FOREIGN KEY (`companyId`) REFERENCES `companies` (`id`),
+  ADD CONSTRAINT `games_ibfk_1` FOREIGN KEY (`companyId`) REFERENCES `companies` (`companyId`),
   ADD CONSTRAINT `games_ibfk_2` FOREIGN KEY (`categoryId`) REFERENCES `categories` (`categoryId`);
 
 --
