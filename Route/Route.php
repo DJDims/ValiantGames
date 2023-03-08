@@ -12,8 +12,13 @@ if(strstr($_SERVER['REQUEST_URI'],'?')){
 
 switch($route){
 	case '':
+	case 'index':
 	case 'index.php':
 		MainController::StartSite();
+		break;
+
+	case 'search':
+		MainController::search();
 		break;
 //---------------users---------------
 	case 'showLogin':
@@ -88,6 +93,10 @@ switch($route){
 	case 'deleteCompany':
 		CompanyController::deleteCompany($id);
 		break;
+
+	case 'showCompanyDetails':
+		CompanyController::showCompanyDetails($id);
+		break;
 //---------------companies---------------
 //---------------categories---------------
 	case 'showTableCategories':
@@ -116,6 +125,10 @@ switch($route){
 
 	case 'deleteCategory':
 		CategoryController::deleteCategory($id);
+		break;
+
+	case 'showCategoryDetails':
+		CategoryController::showCategoryDetails($id);
 		break;
 //---------------categories---------------
 //---------------games---------------
@@ -147,7 +160,7 @@ switch($route){
 		GameController::deleteGame($id);
 		break;
 
-	case 'showDetails':
+	case 'showGameDetails':
 		GameController::showDetails($id);
 		break;
 //---------------games---------------
@@ -178,6 +191,10 @@ switch($route){
 
 	case 'deleteBundle':
 		BundleController::deleteBundle($id);
+		break;
+
+	case 'showBundleDetails':
+		BundleController::showBundleDetails($id);
 		break;
 //---------------bundles---------------
 //DEVELOPER ROUTES

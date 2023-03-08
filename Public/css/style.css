@@ -73,6 +73,16 @@ tr p {
     justify-content: space-around;
 }
 
+.right-info p {
+    font-size: larger;
+    color: #ffffff;
+}
+
+.right-info p i {
+    font-size: medium;
+    color: #aaaaaa;
+}
+
 @media (max-width: 1399.98px) {
     .nav li {
         padding: 0px !important;

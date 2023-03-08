@@ -26,7 +26,7 @@ class GameModel{
     }
     
     public static function findGamesByCompany($companyId) {
-        $query = "SELECT * FROM `games` WHERE `companyId` = '$companyId' ORDER BY `title` ASC";
+        $query = "SELECT * FROM `games` INNER JOIN categories ON games.categoryId = categories.categoryId WHERE `companyId` = '$companyId' ORDER BY `title` ASC";
         $db = new database();
         $response = $db -> getAll($query);
 
@@ -34,7 +34,7 @@ class GameModel{
     }
     
     public static function findGamesByCategory($categoryId) {
-        $query = "SELECT * FROM `games` WHERE `categoryId` = '$categoryId' ORDER BY `title` ASC";
+        $query = "SELECT * FROM `games` INNER JOIN companies ON games.companyId = companies.companyId WHERE `categoryId` = '$categoryId' ORDER BY `title` ASC";
         $db = new database();
         $response = $db -> getAll($query);
 
@@ -83,13 +83,13 @@ class GameModel{
     public static function findGamesByBundle($bundleId) {
         $response = array();
         
-        $query = "SELECT * FROM `games` WHERE id IN (SELECT gameId FROM game_bundle WHERE bundleId = '$bundleId')";
+        $query = "SELECT * FROM `games` INNER JOIN categories ON games.categoryId = categories.categoryId INNER JOIN companies ON games.companyId = companies.companyId WHERE id IN (SELECT gameId FROM game_bundle WHERE bundleId = '$bundleId')";
         $db = new database();
         $res = $db -> getAll($query);
         
         array_push($response, $res);
         
-        $query = "SELECT * FROM `games` WHERE id NOT IN (SELECT gameId FROM game_bundle WHERE bundleId = '$bundleId')";
+        $query = "SELECT * FROM `games` INNER JOIN categories ON games.categoryId = categories.categoryId INNER JOIN companies ON games.companyId = companies.companyId WHERE id NOT IN (SELECT gameId FROM game_bundle WHERE bundleId = '$bundleId')";
         $res = $db -> getAll($query);
         
         array_push($response, $res);
@@ -101,6 +101,14 @@ class GameModel{
         $query = "SELECT status FROM game_user WHERE userId = '$userId' AND gameId = '$gameId'";
         $db = new database();
         $response = $db -> getOne($query);
+    
+        return $response;
+    }
+
+    public static function findByKeyword($keyword) {
+        $query = "SELECT * FROM games INNER JOIN categories ON games.categoryId = categories.categoryId INNER JOIN companies ON games.companyId = companies.companyId WHERE title LIKE '%$keyword%' ";
+        $db = new database();
+        $response = $db -> getAll($query);
     
         return $response;
     }

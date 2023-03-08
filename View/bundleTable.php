@@ -39,10 +39,10 @@
     <?php foreach ($bundles as $k => $v) { ?>
         <tr class="table-active">
             <th scope="row"><p><?php echo ($k + 1) ?></p></th>
-            <td><p><?php echo $v['title']; ?></p></th>
+            <td><p><a href="showBundleDetails?<?php echo $v['id']; ?>"><?php echo $v['title']; ?></a></p></th>
             <td class="text-end"><a href="showEditBundle?<?php echo $v['id']; ?>" class="btn btn-warning">Edit</td>
             <td class="text-end"><a href="showDeleteBundle?<?php echo $v['id']; ?>" class="btn btn-danger">Delete</td>
-        </tr>';
+        </tr>
     <?php } ?>
     </tbody>
 </table>

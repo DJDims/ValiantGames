@@ -33,7 +33,7 @@ $title = '';
                         <li><h4><?php echo $v['title']; ?></h4><span><?php echo $v['categoryTitle']; ?></span></li>
                         <li><h4>Date Added</h4><span><?php echo $v['created_at']; ?></span></li>
                         <li><h4>Price</h4><span><?php echo $v['price']; ?><i class="fa fa-eur"></i></span></li>
-                        <li><a class="btn btn-success col-5" href="showBuyGame?<?php echo $v['id']; ?>">Buy</a></li>
+                        <li><a class="btn btn-success col-5" href="buyGame?<?php echo $v['id']; ?>">Buy</a></li>
                     </ul>
                 </div>
             <?php } ?>
@@ -58,7 +58,7 @@ $title = '';
             <div class="row">
             <?php foreach ($newGames as $k => $v) { ?>
                 <div class="col-lg-3 col-sm-6">
-                    <a href="showDetails?<?php echo $v['id']; ?>">
+                    <a href="showGameDetails?<?php echo $v['id']; ?>">
                         <div class="item">
                             <img src="<?php echo $v['poster']; ?>" alt="" />
                                 <h4 style="width: 70%"><?php echo $v['title']; ?><br><span><?php echo $v['categoryTitle']; ?></span></h4>
@@ -93,10 +93,9 @@ $title = '';
                     <a href="showDetails?<?php echo $v['id']; ?>">
                         <div class="item">
                             <img src="<?php echo $v['poster']; ?>" alt="" />
-                                <h4><?php echo $v['title']; ?><br><span><?php echo $v['categoryTitle']; ?></span></h4>
+                                <h4 style="width: 70%"><?php echo $v['title']; ?><br><span><?php echo $v['categoryTitle']; ?></span></h4>
                             <ul>
                                 <li><?php echo $v['price']; ?><i class="fa fa-eur"></i></li>
-                                <li><i class="fa fa-download"></i> 2.3M</li>
                             </ul>
                         </div>
                     </a>

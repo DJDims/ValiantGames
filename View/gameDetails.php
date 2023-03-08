@@ -19,6 +19,7 @@ $title = '';
                     </div>
                     <div class="col-lg-6">
                         <div class="right-info">
+                            <p>Price: <?php echo $game['price'] ?>€</p>
                             <p>Category: <?php echo $game['categoryTitle'] ?></p>
                             <p>Developer: <?php echo $game['companyTitle'] ?></p>
                             <p>Description:<br/><i><?php echo $game['description'] ?></i></p>

@@ -39,7 +39,7 @@
     <?php foreach ($games as $k => $v) { ?>
         <tr class="table-active">
             <th scope="row"><p><?php echo ($k + 1); ?></p></th>
-            <td><p><?php echo $v['title']; ?></p></th>
+            <td><p><a href="showGameDetails?<?php echo  $v['id']; ?>"><?php echo $v['title']; ?></a></p></th>
             <td class="text-end"><a href="showEditGame?<?php echo  $v['id']; ?>" class="btn btn-warning">Edit</td>
             <td class="text-end"><a href="showDeleteGame?<?php echo  $v['id']; ?>" class="btn btn-danger">Delete</td>
         </tr>

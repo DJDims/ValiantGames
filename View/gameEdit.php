@@ -36,7 +36,7 @@
             <?php if ($v['categoryId'] == $game['categoryId']) { ?>
                 <option value="<?php echo $v['categoryId']; ?>" selected><?php echo $v['categoryTitle']; ?></option>
             <?php } else { ?>
-                <option value="<?php echo $v['categoryId']; ?>"><?php echo $v['categoryTitle'] ?>'</option>
+                <option value="<?php echo $v['categoryId']; ?>"><?php echo $v['categoryTitle'] ?></option>
             <?php } ?>
             <?php } ?>
         </select>

@@ -8,6 +8,14 @@ class BundleController{
         return;
     }
 
+    public static function showBundleDetails($bundleId) {
+        $bundle = BundleModel::findBundleById($bundleId);
+        $games = GameModel::findGamesByBundle($bundleId);
+
+        include_once('View/bundleDetails.php');
+        return;
+    }
+
     public static function showAddBundle() {
         $games = GameModel::findAllGames();
         

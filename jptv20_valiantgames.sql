@@ -293,7 +293,7 @@ CREATE TABLE `game_user` (
   `gameId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `status` enum('WISHED','BUY') NOT NULL DEFAULT 'WISHED',
-  `price` int(11) NOT NULL,
+  `price` float NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

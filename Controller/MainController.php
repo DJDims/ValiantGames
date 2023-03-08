@@ -17,6 +17,14 @@ class MainController {
         }
         
         include_once 'View/main.php';
+        return;
+    }
+
+    public static function search() {
+        $games = GameModel::findByKeyword($_POST['searchKeyword']);
+
+        include_once('View/search.php');
+        return;
     }
 
     public static function error404(){

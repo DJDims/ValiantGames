@@ -8,6 +8,14 @@ class CompanyController{
         return;
     }
 
+    public static function showCompanyDetails($companyId) {
+        $company = CompanyModel::findCompanyById($companyId);
+        $games = GameModel::findGamesByCompany($companyId);
+        
+        include_once('View/companyDetails.php');
+        return;
+    }
+
     public static function showAddCompany() {
         include_once('View/companyAdd.php');
         return;

@@ -63,32 +63,41 @@ class UserController{
     }
 
     public static function addMoney() {
-        // $userId = $_SESSION['userId'];
         $result = UserModel::addMoney($_SESSION['userId']);
-
         UserController::showProfile();
         return;
     }
 
-    public static function showBuyGame($gameId){
-        return;
-    }
-    
     public static function buyGame($gameId){
         UserModel::buyGame($gameId, $_SESSION['userId']);
-        GameController::showDetails($gameId);
+
+        $_SESSION['alert']['message'] = 'Игра куплена';
+        $_SESSION['alert']['type'] = 'alert-success';
+        $_SESSION['alert']['icon'] = '#check-circle-fill';
+        
+        UserController::showProfile();
         return;
     }
     
     public static function wishGame($gameId){
         UserModel::wishGame($gameId, $_SESSION['userId']);
-        GameController::showDetails($gameId);
+
+        $_SESSION['alert']['message'] = 'Игра добавлена в желаемое';
+        $_SESSION['alert']['type'] = 'alert-success';
+        $_SESSION['alert']['icon'] = '#check-circle-fill';
+
+        UserController::showProfile();
         return;
     }
     
     public static function unwishGame($gameId){
         UserModel::unwishGame($gameId, $_SESSION['userId']);
-        GameController::showDetails($gameId);
+
+        $_SESSION['alert']['message'] = 'Игра удалена из желаемого';
+        $_SESSION['alert']['type'] = 'alert-success';
+        $_SESSION['alert']['icon'] = '#check-circle-fill';
+
+        UserController::showProfile();
         return;
     }
 }

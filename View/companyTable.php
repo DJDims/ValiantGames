@@ -39,7 +39,7 @@
 	<?php foreach ($companies as $k => $v) { ?>
 		<tr class="table-active">
 			<th scope="row"><p><?php echo ($k + 1); ?></p></th>
-			<td><p><?php echo $v['companyTitle']; ?></p></th>
+			<td><p><a href="showCompanyDetails?<?php echo $v['companyId']; ?>"><?php echo $v['companyTitle']; ?></a></p></th>
 			<td class="text-end"><a href="showEditCompany?<?php echo $v['companyId']; ?>" class="btn btn-warning">Edit</td>
 			<td class="text-end"><a href="showDeleteCompany?<?php echo $v['companyId']; ?>" class="btn btn-danger">Delete</td>
 		</tr>

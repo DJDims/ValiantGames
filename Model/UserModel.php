@@ -146,7 +146,7 @@ class UserModel{
         $response = $db -> getOne($query);
         
         if ($response) {
-            $query = "UPDATE `game_user` SET `status`= 2,`price`='$gamePrice' WHERE gameId = AND userId = ";
+            $query = "UPDATE `game_user` SET `status`= 2,`price`='$gamePrice' WHERE gameId = '$gameId' AND userId = '$userId'";
             $db -> executeRun($query);
         } else {
             $query = "INSERT INTO `game_user`(`gameId`, `userId`, `status`, `price`) VALUES ('$gameId','$userId',2,'$gamePrice')";
@@ -157,6 +157,7 @@ class UserModel{
         $query = "UPDATE `users` SET `wallet`='$currentMoney' WHERE id = '$userId'";
         $db -> executeRun($query);
         
+        return;
     }
 
     public static function addMoney($userId) {

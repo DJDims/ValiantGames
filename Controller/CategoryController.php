@@ -7,6 +7,14 @@ class CategoryController{
         include_once('View/categoryTable.php');
         return;
     }
+
+    public static function showCategoryDetails($categoryId) {
+        $category = CategoryModel::findCategoryById($categoryId);
+        $games = GameModel::findGamesByCategory($categoryId);
+        
+        include_once('View/categoryDetails.php');
+        return;
+    }
     
     public static function showAddCategory() {
         include_once('View/categoryAdd.php');
