@@ -1,6 +1,5 @@
 <?php
 	ob_start();
-	$title = '';
 ?>
 
 <script src="../Public/js/alert.js"></script>

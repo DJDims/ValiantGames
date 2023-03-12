@@ -21,9 +21,28 @@ class MainController {
     }
 
     public static function search() {
-        $games = GameModel::findByKeyword($_POST['searchKeyword']);
+        $games = GameModel::findByKeyword(trim($_POST['searchKeyword']));
 
         include_once('View/search.php');
+        return;
+    }
+
+    public static function showAdvancedSearch() {
+        $companies = CompanyModel::findDistinctCompanies();
+        $categories = CategoryModel::findDistinctCategories();
+        $years = GameModel::findDistinctYears();
+        
+        include_once('View/advancedSearch.php');
+        return;
+    }
+    
+    public static function advancedSearch() {
+        $companies = CompanyModel::findDistinctCompanies();
+        $categories = CategoryModel::findDistinctCategories();
+        $years = GameModel::findDistinctYears();
+        $games = GameModel::findByOptions();
+        
+        include_once('View/advancedSearch.php');
         return;
     }
 

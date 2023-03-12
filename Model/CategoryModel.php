@@ -17,6 +17,14 @@ class CategoryModel{
         return $response;
     }
 
+    public static function findDistinctCategories() {
+        $query = "SELECT * FROM categories WHERE categoryId IN (SELECT DISTINCT categoryId FROM games)";
+        $db = new database();
+        $response = $db -> getAll($query);
+
+        return $response;
+    }
+
     public static function countCategories() {
         $query = "SELECT COUNT(categoryTitle) FROM `categories`";
         $db = new database();

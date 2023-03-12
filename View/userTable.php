@@ -1,6 +1,5 @@
 <?php
     ob_start();
-    $title = '';
 ?>
 
 <table class="table table-hover header-text">

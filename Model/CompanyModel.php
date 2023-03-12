@@ -17,6 +17,14 @@ class CompanyModel{
         return $response;
     }
 
+    public static function findDistinctCompanies() {
+        $query = "SELECT * FROM companies WHERE companyId IN (SELECT DISTINCT companyId FROM games)";
+        $db = new database();
+        $response = $db -> getAll($query);
+
+        return $response;
+    }
+
     public static function countCompanies() {
         $query = "SELECT COUNT(id) FROM `companies`";
         $db = new database();

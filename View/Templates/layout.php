@@ -71,7 +71,6 @@
 								<li><a href="showTableGames">Games</a></li>
 								<li><a href="showTableCompanies">Companies</a></li>
 								<li><a href="showTableCategories">Categories</a></li>
-								<li><a href="showTableBundles">Bundles</a></li>
 								<li><a href="showTableUsers">Users</a></li>
 							<?php } else { ?>
 								<li><a href="browse.html">Browse</a></li>

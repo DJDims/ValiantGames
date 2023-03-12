@@ -83,6 +83,10 @@ tr p {
     color: #aaaaaa;
 }
 
+.form-group label {
+    color: #e75e8d;
+}
+
 @media (max-width: 1399.98px) {
     .nav li {
         padding: 0px !important;

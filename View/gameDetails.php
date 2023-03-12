@@ -1,6 +1,5 @@
 <?php
 ob_start();
-$title = '';
 ?>
 
 <!-- ***** Details Start ***** -->

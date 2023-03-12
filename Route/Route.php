@@ -20,6 +20,14 @@ switch($route){
 	case 'search':
 		MainController::search();
 		break;
+
+	case 'showAdvancedSearch':
+		MainController::showAdvancedSearch();
+		break;
+
+	case 'advancedSearch':
+		MainController::advancedSearch();
+		break;
 //---------------users---------------
 	case 'showLogin':
 		UserController::showLoginForm();
@@ -164,45 +172,6 @@ switch($route){
 		GameController::showDetails($id);
 		break;
 //---------------games---------------
-//---------------bundles---------------
-	case 'showTableBundles':
-		BundleController::showTableBundles();
-		break;
-
-	case 'showAddBundle':
-		BundleController::showAddBundle();
-		break;
-
-	case 'addBundle':
-		BundleController::addBundle();
-		break;
-
-	case 'showEditBundle':
-		BundleController::showEditBundle($id);
-		break;
-
-	case 'editBundle':
-		BundleController::editBundle($id);
-		break;
-
-	case 'showDeleteBundle':
-		BundleController::showDeleteBundle($id);
-		break;
-
-	case 'deleteBundle':
-		BundleController::deleteBundle($id);
-		break;
-
-	case 'showBundleDetails':
-		BundleController::showBundleDetails($id);
-		break;
-//---------------bundles---------------
-//DEVELOPER ROUTES
-	case 'dropSession':
-		session_destroy();
-		break;
-	
-//DEVELOPER ROUTES
 	default :
 		MainController::error404();
 		break;

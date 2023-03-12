@@ -1,6 +1,5 @@
 <?php
     ob_start();
-    $title = '';
 ?>
 
 <form class="col-4" action="editCompany?<?php echo $company['companyId'];?>" method="POST">

@@ -1,6 +1,5 @@
 <?php
     ob_start();
-    $title = '';
 ?>
 
 <form class="col-4 header-text" action="addGame" method="POST">

@@ -24,59 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `bundles`
---
-
-CREATE TABLE `bundles` (
-  `id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `price` float NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Дамп данных таблицы `bundles`
---
-
-INSERT INTO `bundles` (`id`, `title`, `price`, `created_at`, `updated_at`) VALUES
-(1, 'Bioshock: The Collection', 59.99, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(2, 'Hotline Miami Collection', 40.33, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(3, 'Fallout Classic Collection', 19.99, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(4, 'Fallout Series', 179.92, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(5, 'Outlast Trinity', 39.33, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(6, 'The Walking Dead Ultimate Bundle', 117.83, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(7, 'Amnesia Re-Collection', 54.39, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(8, 'Frictional Collection', 80.03, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(9, 'Watch_Dogs Bundle', 80.98, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(10, 'Watch_Dogs Complete', 49.99, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(11, 'Dishonored - Definitive Edition', 19.99, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(12, 'Dishonored: Death of the Outsider - Deluxe Bundle', 59.99, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(13, 'Prey and Dishonored 2 Bundle', 48.58, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(14, 'Arkane 20th Anniversary Bundle', 88.74, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(15, 'Prey Digital Deluxe', 39.99, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(16, 'Prey Digital Deluxe + Control Ultimate Edition', 71.98, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(17, 'Control + Alan Wake Franchise', 59.38, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(18, 'Disco Elysium + Control', 71.98, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(19, 'Alan Wake Collectors Edition', 16.79, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(20, 'Alan Wake Franchise', 20.99, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(21, 'S.T.A.L.K.E.R Bundle', 33.99, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(22, 'Metro Exodus - Gold Edition', 39.99, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(23, 'Metro Saga Bundle', 59.46, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(24, 'The Orange Box', 19.5, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(25, 'Half-Life Complete', 32.4, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(26, 'Valve Complete Pack', 62.23, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(27, 'Half-Life 1: Source', 9.75, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(28, 'Half-Life 1 Anthology', 11.07, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(29, 'Left 4 Dead Bundle', 14.62, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(30, 'Portal Bundle', 14.62, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(31, 'The Binding of Isaac: Rebirth Complete Bundle', 48.46, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(32, 'The Binding of Isaac: Afterbirth+ Bundle', 35.97, '2023-02-26 17:46:15', '2023-02-26 17:46:43'),
-(33, 'The Blue King Collection', 75.52, '2023-02-26 17:46:15', '2023-02-26 17:46:43');
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `categories`
 --
 
@@ -271,20 +218,6 @@ INSERT INTO `games` (`id`, `title`, `publishYear`, `companyId`, `poster`, `descr
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `game_bundle`
---
-
-CREATE TABLE `game_bundle` (
-  `id` int(11) NOT NULL,
-  `gameId` int(11) NOT NULL,
-  `bundleId` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `game_user`
 --
 
@@ -327,13 +260,6 @@ INSERT INTO `users` (`id`, `username`, `password`, `wallet`, `avatar`, `role`, `
 --
 
 --
--- Индексы таблицы `bundles`
---
-ALTER TABLE `bundles`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`title`);
-
---
 -- Индексы таблицы `categories`
 --
 ALTER TABLE `categories`
@@ -356,14 +282,6 @@ ALTER TABLE `games`
   ADD KEY `publisher` (`companyId`),
   ADD KEY `categoryId` (`categoryId`);
 
---
--- Индексы таблицы `game_bundle`
---
-ALTER TABLE `game_bundle`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `unique` (`gameId`,`bundleId`),
-  ADD KEY `gameId` (`gameId`),
-  ADD KEY `bundleId` (`bundleId`);
 
 --
 -- Индексы таблицы `game_user`
@@ -386,12 +304,6 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT для таблицы `bundles`
---
-ALTER TABLE `bundles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
---
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
@@ -409,11 +321,6 @@ ALTER TABLE `companies`
 ALTER TABLE `games`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
---
--- AUTO_INCREMENT для таблицы `game_bundle`
---
-ALTER TABLE `game_bundle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `game_user`
@@ -438,12 +345,6 @@ ALTER TABLE `games`
   ADD CONSTRAINT `games_ibfk_1` FOREIGN KEY (`companyId`) REFERENCES `companies` (`companyId`),
   ADD CONSTRAINT `games_ibfk_2` FOREIGN KEY (`categoryId`) REFERENCES `categories` (`categoryId`);
 
---
--- Ограничения внешнего ключа таблицы `game_bundle`
---
-ALTER TABLE `game_bundle`
-  ADD CONSTRAINT `game_bundle_ibfk_1` FOREIGN KEY (`gameId`) REFERENCES `games` (`id`),
-  ADD CONSTRAINT `game_bundle_ibfk_2` FOREIGN KEY (`bundleId`) REFERENCES `bundles` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `game_user`

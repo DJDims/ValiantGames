@@ -1,6 +1,5 @@
 <?php
     ob_start();
-    $title = '';
 ?>
 
 <h2><?php echo $company['companyTitle']; ?></h2>
@@ -17,9 +16,9 @@
     <?php foreach ($games as $k => $v) { ?>
         <tr class="table-active">
             <th scope="row"><p><?php echo ($k + 1); ?></p></th>
-            <td><p><?php echo $v['title']; ?></p></th>
+            <td><p><a href="showGameDetails?<?php echo $v['id']; ?>"><?php echo $v['title']; ?></a></p></th>
             <td><p><?php echo $v['publishYear']; ?></p></th>
-            <td><p><?php echo $v['categoryTitle']; ?></p></th>
+            <td><p><a href="showCategoryDetails?<?php echo $v['categoryId']; ?>"><?php echo $v['categoryTitle']; ?></a></p></th>
         </tr>
     <?php } ?>
     </tbody>

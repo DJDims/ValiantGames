@@ -80,27 +80,18 @@ class GameModel{
         return $response;
     }
     
-    public static function findGamesByBundle($bundleId) {
-        $response = array();
-        
-        $query = "SELECT * FROM `games` INNER JOIN categories ON games.categoryId = categories.categoryId INNER JOIN companies ON games.companyId = companies.companyId WHERE id IN (SELECT gameId FROM game_bundle WHERE bundleId = '$bundleId')";
-        $db = new database();
-        $res = $db -> getAll($query);
-        
-        array_push($response, $res);
-        
-        $query = "SELECT * FROM `games` INNER JOIN categories ON games.categoryId = categories.categoryId INNER JOIN companies ON games.companyId = companies.companyId WHERE id NOT IN (SELECT gameId FROM game_bundle WHERE bundleId = '$bundleId')";
-        $res = $db -> getAll($query);
-        
-        array_push($response, $res);
-        
-        return $response;
-    }
-    
     public static function findUserStatus($gameId, $userId) {
         $query = "SELECT status FROM game_user WHERE userId = '$userId' AND gameId = '$gameId'";
         $db = new database();
         $response = $db -> getOne($query);
+    
+        return $response;
+    }
+    
+    public static function findDistinctYears() {
+        $query = "SELECT DISTINCT publishYear FROM games ORDER BY publishYear ASC";
+        $db = new database();
+        $response = $db -> getAll($query);
     
         return $response;
     }
@@ -113,11 +104,46 @@ class GameModel{
         return $response;
     }
 
-    public static function countGamesByBundle($bundleId) {
-        $query = "SELECT COUNT(id) FROM `game_bundle` WHERE bundleId = '$bundleId'";
-        $db = new database();
-        $response = $db -> getOne($query);
+    public static function findByOptions() {
+        $keyword = trim($_POST['keyword']);
+        $company = $_POST['company'];
+        $category = $_POST['category'];
+        $year = $_POST['year'];
 
+        $query = "SELECT * FROM games INNER JOIN categories ON games.categoryId = categories.categoryId INNER JOIN companies ON games.companyId = companies.companyId";
+
+        if ($keyword != '' || $company != '' || $category != '' || $year != '') {
+            $query .= ' WHERE';    
+
+            if ($keyword != '') {
+                $query .= " title LIKE '%$keyword%' ";
+            }
+
+            if ($company != '') {
+                if (str_ends_with($query, " ") == true) {
+                    $query .= " AND";
+                }
+                $query .= " games.companyId = '$company' ";
+            }
+
+            if ($category != '') {
+                if (str_ends_with($query, " ") == true) {
+                    $query .= " AND";
+                }
+                $query .= " games.categoryId = '$category' ";
+            }
+
+            if ($year != '') {
+                if (str_ends_with($query, " ") == true) {
+                    $query .= " AND";
+                }
+                $query .= " publishYear = '$year'";
+            }
+        }
+
+        $db = new database();
+        $response = $db -> getAll($query);
+    
         return $response;
     }
 
