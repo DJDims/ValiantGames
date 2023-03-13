@@ -1,8 +1,17 @@
 <?php
 
 class CompanyController{
-    public static function showTableCompanies() {
-        $companies = CompanyModel::findAllCompanies();
+    public static function showTableCompanies($page) {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] == 'USER') {
+            header('Location: error403');
+            return;
+        }
+        
+        $offset = ($page-1)*10;
+
+        $companies = CompanyModel::findAllCompaniesByOffset($offset);
+        $pagesCount = CompanyModel::countPages();
+        $pageNumber = $page;
         
         include_once('View/companyTable.php');
         return;
@@ -17,11 +26,21 @@ class CompanyController{
     }
 
     public static function showAddCompany() {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] == 'USER') {
+            header('Location: error403');
+            return;
+        }
+
         include_once('View/companyAdd.php');
         return;
     }
     
     public static function addCompany() {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] == 'USER') {
+            header('Location: error403');
+            return;
+        }
+
         $result = CompanyModel::addCompany();
 
         if ($result == true) {
@@ -34,11 +53,16 @@ class CompanyController{
             $_SESSION['alert']['icon'] = '#exclamation-triangle-fill';
         }
         
-        header('Location: showTableCompanies');
+        header('Location: showTableCompanies?1');
         return;
     }
     
     public static function showEditCompany($companyId) {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] == 'USER') {
+            header('Location: error403');
+            return;
+        }
+
         $company = CompanyModel::findCompanyById($companyId);
         
         include_once('View/companyEdit.php');
@@ -46,6 +70,11 @@ class CompanyController{
     }
     
     public static function editCompany($companyId) {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] == 'USER') {
+            header('Location: error403');
+            return;
+        }
+
         $result = CompanyModel::editCompany($companyId);
 
         if ($result == true) {
@@ -58,11 +87,16 @@ class CompanyController{
             $_SESSION['alert']['icon'] = '#exclamation-triangle-fill';
         }
         
-        header('Location: showTableCompanies');
+        header('Location: showTableCompanies?1');
         return;
     }
     
     public static function showDeleteCompany($companyId) {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] == 'USER') {
+            header('Location: error403');
+            return;
+        }
+
         $company = CompanyModel::findCompanyById($companyId);
         $countGames = CompanyModel::countGamesByCompanyId($companyId);
 
@@ -71,6 +105,11 @@ class CompanyController{
     }
     
     public static function deleteCompany($companyId) {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] == 'USER') {
+            header('Location: error403');
+            return;
+        }
+
         $result = CompanyModel::deleteCompany($companyId);
 
         if ($result == true) {
@@ -83,7 +122,7 @@ class CompanyController{
             $_SESSION['alert']['icon'] = '#exclamation-triangle-fill';
         }
         
-        header('Location: showTableCompanies');
+        header('Location: showTableCompanies?1');
         return;
     }
 }

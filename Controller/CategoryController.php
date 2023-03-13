@@ -1,8 +1,17 @@
 <?php
 
 class CategoryController{
-    public static function showTableCategories() {
-        $categories = CategoryModel::findAllCategories();
+    public static function showTableCategories($page) {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] == 'USER') {
+            header('Location: error403');
+            return;
+        }
+
+        $offset = ($page-1)*10;
+
+        $categories = CategoryModel::findAllCategoriesByOffset($offset);
+        $pagesCount = CategoryModel::countPages();
+        $pageNumber = $page;
         
         include_once('View/categoryTable.php');
         return;
@@ -17,11 +26,21 @@ class CategoryController{
     }
     
     public static function showAddCategory() {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] == 'USER') {
+            header('Location: error403');
+            return;
+        }
+
         include_once('View/categoryAdd.php');
         return;
     }
     
     public static function addCategory() {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] == 'USER') {
+            header('Location: error403');
+            return;
+        }
+
         $result = CategoryModel::addCategory();
 
         if ($result == true) {
@@ -34,11 +53,16 @@ class CategoryController{
             $_SESSION['alert']['icon'] = '#exclamation-triangle-fill';
         }
         
-        header('Location: showTableCategories');
+        header('Location: showTableCategories?1');
         return;
     }
     
     public static function showEditCategory($categoryId) {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] == 'USER') {
+            header('Location: error403');
+            return;
+        }
+
         $category = CategoryModel::findCategoryById($categoryId);
         
         include_once('View/categoryEdit.php');
@@ -46,6 +70,11 @@ class CategoryController{
     }
     
     public static function editCategory($categoryId) {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] == 'USER') {
+            header('Location: error403');
+            return;
+        }
+
         $result = CategoryModel::editCategory($categoryId);
         
         if ($result == true) {
@@ -58,11 +87,16 @@ class CategoryController{
             $_SESSION['alert']['icon'] = '#exclamation-triangle-fill';
         }
         
-        header('Location: showTableCategories');
+        header('Location: showTableCategories?1');
         return;
     }
     
     public static function showDeleteCategory($categoryId) {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] == 'USER') {
+            header('Location: error403');
+            return;
+        }
+
         $category = CategoryModel::findCategoryById($categoryId);
         $countGames = CategoryModel::countGamesByCategoryId($categoryId);
 
@@ -71,6 +105,11 @@ class CategoryController{
     }
     
     public static function deleteCategory($categoryId) {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] == 'USER') {
+            header('Location: error403');
+            return;
+        }
+        
         $result = CategoryModel::deleteCategory($categoryId);
 
         if ($result == true) {
@@ -83,7 +122,7 @@ class CategoryController{
             $_SESSION['alert']['icon'] = '#exclamation-triangle-fill';
         }
         
-        header('Location: showTableCategories');
+        header('Location: showTableCategories?1');
         return;
     }
 }

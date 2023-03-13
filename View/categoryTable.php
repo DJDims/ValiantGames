@@ -37,7 +37,7 @@
     <tbody>
     <?php foreach ($categories as $k => $v) { ?>
         <tr class="table-active">
-            <th scope="row"><p><?php echo ($k + 1); ?></p></th>
+            <th scope="row"><p><?php echo ($k + 1)+(($pageNumber-1)*10); ?></p></th>
             <td><p><a href="showCategoryDetails?<?php echo $v['categoryId']; ?>"><?php echo $v['categoryTitle']; ?></a></p></th>
             <td class="text-end"><a href="showEditCategory?<?php echo $v['categoryId']; ?>" class="btn btn-warning">Edit</td>
             <td class="text-end"><a href="showDeleteCategory?<?php echo $v['categoryId']; ?>" class="btn btn-danger">Delete</td>
@@ -45,6 +45,28 @@
     <?php } ?>
     </tbody>
 </table>
+
+<!-- pagination -->
+<div class="d-flex justify-content-center">	
+	<nav aria-label="Page navigation example">
+		<ul class="pagination pagination-lg">
+			<li class="page-item <?php if($pageNumber == 1) { echo 'disabled'; }?>">
+				<a class="page-link" href="showTableCategories?1" aria-label="Previous">
+					<span aria-hidden="true">&laquo;</span>
+				</a>
+			</li>
+			<?php for ($i=1; $i <= $pagesCount; $i++) { ?>
+				<li class="page-item"><a class="page-link <?php if($i == $pageNumber) { echo 'active'; }?>" href="showTableCategories?<?php echo $i; ?>"><?php echo $i; ?></a></li>
+			<?php } ?>
+			<li class="page-item <?php if($pageNumber == $pagesCount) { echo 'disabled'; }?>">
+				<a class="page-link" href="showTableCategories?<?php echo $pagesCount; ?>" aria-label="Next">
+					<span aria-hidden="true">&raquo;</span>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</div>
+<!-- pagination -->
 
 <?php
     $pageContent = ob_get_clean();

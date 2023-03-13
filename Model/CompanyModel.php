@@ -9,6 +9,14 @@ class CompanyModel{
         return $response;
     }
 
+    public static function findAllCompaniesByOffset($offset) {
+        $query = "SELECT * FROM `companies` ORDER BY `companyTitle` ASC LIMIT 10 OFFSET $offset";
+        $db = new database();
+        $response = $db -> getAll($query);
+
+        return $response;
+    }
+
     public static function findCompanyById($companyId) {
         $query = "SELECT * FROM `companies` WHERE companyId ='$companyId'";
         $db = new database();
@@ -39,6 +47,16 @@ class CompanyModel{
         $response = $db -> getOne($query);
 
         return $response;
+    }
+
+    public static function countPages() {
+        $query = "SELECT COUNT(companyId) FROM `companies`";
+        $db = new database();
+        $response = $db -> getOne($query);
+
+        $pagesCount = ceil($response['COUNT(companyId)'] / 10);
+
+        return $pagesCount;
     }
 
     public static function addCompany() {

@@ -9,6 +9,14 @@ class GameModel{
         return $response;
     }
 
+    public static function findAllGamesByOffset($offset) {
+        $query = "SELECT * FROM `games` ORDER BY `title` ASC LIMIT 10 OFFSET $offset";
+        $db = new database();
+        $response = $db -> getAll($query);
+
+        return $response;
+    }
+
     public static function findGameById($gameId) {
         $query = "SELECT * FROM `games` INNER JOIN categories ON games.categoryId = categories.categoryId INNER JOIN companies ON games.companyId = companies.companyId WHERE games.id = '$gameId'";
         $db = new database();
@@ -157,6 +165,16 @@ class GameModel{
         $response = $db -> getAll($query);
     
         return $response;
+    }
+
+    public static function countPages() {
+        $query = "SELECT COUNT(id) FROM `games`";
+        $db = new database();
+        $response = $db -> getOne($query);
+
+        $pagesCount = ceil($response['COUNT(id)'] / 10);
+
+        return $pagesCount;
     }
 
     public static function addGame() {

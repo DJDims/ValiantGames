@@ -9,6 +9,14 @@ class CategoryModel{
         return $response;
     }
 
+    public static function findAllCategoriesByOffset($offset) {
+        $query = "SELECT * FROM `categories` ORDER BY `categoryTitle` ASC LIMIT 10 OFFSET $offset";
+        $db = new database();
+        $response = $db -> getAll($query);
+
+        return $response;
+    }
+
     public static function findCategoryById($categoryId) {
         $query = "SELECT * FROM `categories` WHERE categoryId = '$categoryId'";
         $db = new database();
@@ -39,6 +47,16 @@ class CategoryModel{
         $response = $db -> getOne($query);
 
         return $response;
+    }
+
+    public static function countPages() {
+        $query = "SELECT COUNT(categoryId) FROM `categories`";
+        $db = new database();
+        $response = $db -> getOne($query);
+
+        $pagesCount = ceil($response['COUNT(categoryId)'] / 10);
+
+        return $pagesCount;
     }
 
     public static function addCategory() {

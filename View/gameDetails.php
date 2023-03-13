@@ -19,8 +19,8 @@ ob_start();
                     <div class="col-lg-6">
                         <div class="right-info">
                             <p>Price: <?php echo $game['price'] ?>€</p>
-                            <p>Category: <?php echo $game['categoryTitle'] ?></p>
-                            <p>Developer: <?php echo $game['companyTitle'] ?></p>
+                            <p>Category: <a href="showCategoryDetails?<?php echo $game['categoryId'] ?>"><?php echo $game['categoryTitle'] ?></a></p>
+                            <p>Developer: <a href="showCompanyDetails?<?php echo $game['companyId'] ?>"><?php echo $game['companyTitle'] ?></a></p>
                             <p>Description:<br/><i><?php echo $game['description'] ?></i></p>
                         </div>
                     </div>

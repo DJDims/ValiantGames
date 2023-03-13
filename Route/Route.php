@@ -7,7 +7,7 @@ $num = substr_count($path, '/');
 $route = explode('/', $path)[$num];
 
 if(strstr($_SERVER['REQUEST_URI'],'?')){
-	$id = urldecode($host[1]);
+	$param = urldecode($host[1]);
 }
 
 switch($route){
@@ -62,15 +62,15 @@ switch($route){
 		break;
 	
 	case 'buyGame':
-		UserController::buyGame($id);
+		UserController::buyGame($param);
 		break;
 	
 	case 'wishGame':
-		UserController::wishGame($id);
+		UserController::wishGame($param);
 		break;
 	
 	case 'unwishGame':
-		UserController::unwishGame($id);
+		UserController::unwishGame($param);
 		break;
 	
 	case 'showWishlist':
@@ -80,10 +80,14 @@ switch($route){
 	case 'showLibrary':
 		UserController::showLibrary();
 		break;
+	
+	case 'changeRole':
+		UserController::changeRole();
+		break;
 //---------------users---------------
 //---------------companies---------------
 	case 'showTableCompanies':
-		CompanyController::showTableCompanies();
+		CompanyController::showTableCompanies($param);
 		break;
 		
 	case 'showAddCompany':
@@ -95,28 +99,28 @@ switch($route){
 		break;
 
 	case 'showEditCompany':
-		CompanyController::showEditCompany($id);
+		CompanyController::showEditCompany($param);
 		break;
 
 	case 'editCompany':
-		CompanyController::editCompany($id);
+		CompanyController::editCompany($param);
 		break;
 
 	case 'showDeleteCompany':
-		CompanyController::showDeleteCompany($id);
+		CompanyController::showDeleteCompany($param);
 		break;
 
 	case 'deleteCompany':
-		CompanyController::deleteCompany($id);
+		CompanyController::deleteCompany($param);
 		break;
 
 	case 'showCompanyDetails':
-		CompanyController::showCompanyDetails($id);
+		CompanyController::showCompanyDetails($param);
 		break;
 //---------------companies---------------
 //---------------categories---------------
 	case 'showTableCategories':
-		CategoryController::showTableCategories();
+		CategoryController::showTableCategories($param);
 		break;
 
 	case 'showAddCategory':
@@ -128,28 +132,28 @@ switch($route){
 		break;
 
 	case 'showEditCategory':
-		CategoryController::showEditCategory($id);
+		CategoryController::showEditCategory($param);
 		break;
 
 	case 'editCategory':
-		CategoryController::editCategory($id);
+		CategoryController::editCategory($param);
 		break;
 
 	case 'showDeleteCategory':
-		CategoryController::showDeleteCategory($id);
+		CategoryController::showDeleteCategory($param);
 		break;
 
 	case 'deleteCategory':
-		CategoryController::deleteCategory($id);
+		CategoryController::deleteCategory($param);
 		break;
 
 	case 'showCategoryDetails':
-		CategoryController::showCategoryDetails($id);
+		CategoryController::showCategoryDetails($param);
 		break;
 //---------------categories---------------
 //---------------games---------------
 	case 'showTableGames':
-		GameController::showTableGames();
+		GameController::showTableGames($param);
 		break;
 
 	case 'showAddGame':
@@ -161,23 +165,23 @@ switch($route){
 		break;
 
 	case 'showEditGame':
-		GameController::showEditGame($id);
+		GameController::showEditGame($param);
 		break;
 
 	case 'editGame':
-		GameController::editGame($id);
+		GameController::editGame($param);
 		break;
 
 	case 'showDeleteGame':
-		GameController::showDeleteGame($id);
+		GameController::showDeleteGame($param);
 		break;
 
 	case 'deleteGame':
-		GameController::deleteGame($id);
+		GameController::deleteGame($param);
 		break;
 
 	case 'showGameDetails':
-		GameController::showDetails($id);
+		GameController::showGameDetails($param);
 		break;
 //---------------games---------------
 	case 'error403':

@@ -192,6 +192,25 @@ class UserModel{
         return $response;
     }
 
+    public static function changeRole() {
+        if (!isset($_POST['send'])) {
+            return false;
+        }
+
+        $userId = $_POST['userId'];
+        $role = $_POST['role'];
+
+        $query = "UPDATE `users` SET `role`= $role WHERE id = $userId";
+        $db = new database();
+        $response = $db -> executeRun($query);
+
+        if ($response != true) {
+            return false;
+        }
+        
+        return true;
+    }
+
 }
 
 ?>

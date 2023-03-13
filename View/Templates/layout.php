@@ -67,10 +67,14 @@
 							<?php if (!isset($_SESSION['sessionId'])) { ?>
 							<li><a href="showLogin">LogIn</a></li>
 							<?php } else { ?>
-							<?php if ($_SESSION['role'] == 'ADMIN') { ?>
-								<li><a href="showTableGames">Games</a></li>
-								<li><a href="showTableCompanies">Companies</a></li>
-								<li><a href="showTableCategories">Categories</a></li>
+							<?php if ($_SESSION['role'] == 'MODERATOR') { ?>
+								<li><a href="showTableGames?1">Games</a></li>
+								<li><a href="showTableCompanies?1">Companies</a></li>
+								<li><a href="showTableCategories?1">Categories</a></li>
+							<?php } elseif ($_SESSION['role'] == 'ADMIN') { ?>
+								<li><a href="showTableGames?1">Games</a></li>
+								<li><a href="showTableCompanies?1">Companies</a></li>
+								<li><a href="showTableCategories?1">Categories</a></li>
 								<li><a href="showTableUsers">Users</a></li>
 							<?php } else { ?>
 								<li><a href="browse.html">Browse</a></li>
