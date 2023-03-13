@@ -3,9 +3,9 @@
 ?>
 
 <div class="row header-text">
-    <h4>Page not found</h4>
+    <h4>Forbidden</h4>
     <div class="d-flex align-items-center justify-content-center">
-        <h2 class="error">404</h2>
+        <h2 class="error">403</h2>
     </div>
 </div>
 

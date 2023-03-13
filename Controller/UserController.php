@@ -43,15 +43,36 @@ class UserController{
     }
 
     public static function showProfile() {
+        if (!isset($_SESSION['role']) && $_SESSION['role'] != 'ADMIN') {
+            
+        }
         $userId = $_SESSION['userId'];
 
         $userData = UserModel::findUserById($userId);
-        $gamesBuyed = GameModel::findLibrary($userId);
-        $gamesWished = GameModel::findWhisList($userId);
+        $gamesBuyed = GameModel::findLibrary($userId, 4);
+        $gamesWished = GameModel::findWhisList($userId, 4);
         $countGamesBuyed = UserModel::countBuyedGames($userId);
         $countGamesWished = UserModel::countWishedGames($userId);
 
         include_once('View/myaccount.php');
+        return;
+    }
+
+    public static function showWishlist() {
+        $userId = $_SESSION['userId'];
+
+        $games = GameModel::findWhisList($userId);
+
+        include_once('View/myWishlist.php');
+        return;
+    }
+
+    public static function showLibrary() {
+        $userId = $_SESSION['userId'];
+
+        $games = GameModel::findLibrary($userId);
+
+        include_once('View/myLibrary.php');
         return;
     }
 

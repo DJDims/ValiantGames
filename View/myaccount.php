@@ -67,7 +67,7 @@ ob_start();
     </div>
     <div class="col-lg-12">
         <div class="main-button">
-            <a href="profile.html">View Your Library</a>
+            <a href="showLibrary">View Your Library</a>
         </div>
     </div>
 </div>
@@ -91,7 +91,7 @@ ob_start();
     </div>
     <div class="col-lg-12">
         <div class="main-button">
-            <a href="profile.html">View Your Wishlist</a>
+            <a href="showWishlist">View Your Wishlist</a>
         </div>
     </div>
 </div>

@@ -40,7 +40,7 @@ ob_start();
     </div>
     <div class="col-lg-12">
         <div class="main-button">
-            <a href="profile.html">View Your Wishlist</a>
+            <a href="showWishlist">View Your Wishlist</a>
         </div>
     </div>
 </div>
@@ -70,7 +70,7 @@ ob_start();
             <?php } ?>
                 <div class="col-lg-12">
                     <div class="main-button">
-                        <a href="browse.html">Discover Popular</a>
+                        <a href="browse">Discover Popular</a>
                     </div>
                 </div>
             </div>
@@ -92,7 +92,7 @@ ob_start();
                     <a href="showDetails?<?php echo $v['id']; ?>">
                         <div class="item">
                             <img src="<?php echo $v['poster']; ?>" alt="" />
-                                <h4 style="width: 70%"><?php echo $v['title']; ?><br><span><?php echo $v['categoryTitle']; ?></span></h4>
+                            <h4 style="width: 70%"><?php echo $v['title']; ?><br><span><?php echo $v['categoryTitle']; ?></span></h4>
                             <ul>
                                 <li><?php echo $v['price']; ?><i class="fa fa-eur"></i></li>
                             </ul>
@@ -102,7 +102,7 @@ ob_start();
             <?php } ?>
                 <div class="col-lg-12">
                     <div class="main-button">
-                        <a href="browse.html">Discover Popular</a>
+                        <a href="browse">Discover Popular</a>
                     </div>
                 </div>
             </div>

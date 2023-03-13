@@ -87,6 +87,10 @@ tr p {
     color: #e75e8d;
 }
 
+.error {
+    font-size: 15vmin;
+}
+
 @media (max-width: 1399.98px) {
     .nav li {
         padding: 0px !important;

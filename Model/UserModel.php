@@ -142,6 +142,17 @@ class UserModel{
         $currentMoney = UserModel::findUserById($userId)['wallet'];
         $gamePrice = gameModel::findGameById($gameId)['price'];
 
+        if ($currentMoney < $gamePrice) {
+            return false;
+        }
+
+        $query = "SELECT * FROM `game_user` WHERE gameId = '$gameId' AND userId = '$userId' AND status = 2";
+        $response = $db -> getOne($query);
+        
+        if ($response) {
+            return false;
+        }
+
         $query = "SELECT * FROM `game_user` WHERE gameId = '$gameId' AND userId = '$userId'";
         $response = $db -> getOne($query);
         

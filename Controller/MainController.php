@@ -9,11 +9,11 @@ class MainController {
     }
 
     public static function showMain() {
-        $popGames = GameModel::findGamesOrderByPurchases();
-        $newGames = GameModel::findGamesOrderByDateAdd();
+        $popGames = GameModel::findGamesOrderByPurchases(4);
+        $newGames = GameModel::findGamesOrderByDateAdd(4);
 
         if (isset($_SESSION['userId'])) {
-            $wishList = GameModel::findWhisList($_SESSION['userId']);
+            $wishList = GameModel::findWhisList($_SESSION['userId'], 4);
         }
         
         include_once 'View/main.php';
@@ -48,6 +48,11 @@ class MainController {
 
     public static function error404(){
         include_once('View/error404.php');
+        return;
+    }
+
+    public static function error403(){
+        include_once('View/error403.php');
         return;
     }
 

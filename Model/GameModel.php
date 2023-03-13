@@ -41,8 +41,11 @@ class GameModel{
         return $response;
     }
 
-    public static function findGamesOrderByPurchases() {
-        $query = "SELECT gameId, COUNT(userId) FROM `game_user` WHERE status = 2 GROUP BY gameId ORDER BY COUNT(userId) DESC LIMIT 8";
+    public static function findGamesOrderByPurchases($limit=0) {
+        $query = "SELECT gameId, COUNT(userId) FROM `game_user` WHERE status = 2 GROUP BY gameId ORDER BY COUNT(userId) DESC";
+        if ($limit > 0) {
+            $query .= " LIMIT $limit";
+        }
         $db = new database();
         $response = $db -> getAll($query);
 
@@ -56,27 +59,36 @@ class GameModel{
         return $games;
     }
 
-    public static function findGamesOrderByDateAdd() {
-        $query = "SELECT * FROM `games` INNER JOIN categories ON games.categoryId = categories.categoryId ORDER BY g_created_at DESC LIMIT 16";
+    public static function findGamesOrderByDateAdd($limit=0) {
+        $query = "SELECT * FROM `games` INNER JOIN categories ON games.categoryId = categories.categoryId ORDER BY g_created_at DESC";
+        if ($limit > 0) {
+            $query .= " LIMIT $limit";
+        }
         $db = new database();
         $response = $db -> getAll($query);
 
         return $response;
     }
 
-    public static function findLibrary($userId) {
-        $query = "SELECT * FROM `games` INNER JOIN categories ON games.categoryId = categories.categoryId WHERE id IN (SELECT gameId FROM `game_user` WHERE userId = '$userId' AND status = 2 ORDER BY created_at DESC)";
+    public static function findLibrary($userId, $limit=0) {
+        $query = "SELECT * FROM `games` INNER JOIN categories ON games.categoryId = categories.categoryId INNER JOIN companies ON games.companyId = companies.companyId WHERE id IN (SELECT gameId FROM `game_user` WHERE userId = '$userId' AND status = 2 ORDER BY created_at DESC)";
+        if ($limit > 0) {
+            $query .= " LIMIT $limit";
+        }
         $db = new database();
         $response = $db -> getAll($query);
 
         return $response;
     }
 
-    public static function findWhisList($userId) {
-        $query = "SELECT * FROM `games` INNER JOIN categories ON games.categoryId = categories.categoryId WHERE id IN (SELECT gameId FROM `game_user` WHERE userId = '$userId' AND status = 1 ORDER BY created_at DESC)";
+    public static function findWhisList($userId, $limit=0) {
+        $query = "SELECT * FROM `games` INNER JOIN categories ON games.categoryId = categories.categoryId INNER JOIN companies ON games.companyId = companies.companyId WHERE id IN (SELECT gameId FROM `game_user` WHERE userId = '$userId' AND status = 1 ORDER BY created_at DESC)";
+        if ($limit > 0) {
+            $query .= " LIMIT $limit";
+        }
         $db = new database();
         $response = $db -> getAll($query);
-
+        
         return $response;
     }
     

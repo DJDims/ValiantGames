@@ -72,6 +72,14 @@ switch($route){
 	case 'unwishGame':
 		UserController::unwishGame($id);
 		break;
+	
+	case 'showWishlist':
+		UserController::showWishlist();
+		break;
+	
+	case 'showLibrary':
+		UserController::showLibrary();
+		break;
 //---------------users---------------
 //---------------companies---------------
 	case 'showTableCompanies':
@@ -172,6 +180,11 @@ switch($route){
 		GameController::showDetails($id);
 		break;
 //---------------games---------------
+	case 'error403':
+		MainController::error403();
+		break;
+		
+	case 'error404':
 	default :
 		MainController::error404();
 		break;
