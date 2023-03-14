@@ -111,3 +111,22 @@ tr p {
         padding: 0px !important;
     }
 }
+
+@media (max-width: 992px) {
+    .header-area {
+        background-color: #27292a !important;
+    }
+    
+    .header-area .main-nav .nav li {
+        background-color: #27292a !important;
+        border: none !important;
+    }
+    
+    .header-area .main-nav .nav li a {
+        background-color: #27292a !important;
+    }
+    
+    .header-area .main-nav .nav li a {
+        background-color: #27292a !important;
+    }
+}

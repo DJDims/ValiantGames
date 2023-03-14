@@ -3,6 +3,8 @@
 class MainController {
 
     public static function startSite(){
+        $_SESSION['orderBy'] = 'TITLE';
+        $_SESSION['orderType'] = 'ASC';
         MainModel::createAdmin();
         MainController::showMain();
         return;
