@@ -16,9 +16,6 @@
         <input class="form-control" type="text" placeholder="Poster" name="gamePoster" />
     </div>
     <div class="form-group">
-        <textarea class="form-control" placeholder="Description" name="gameDescription"></textarea>
-    </div>
-    <div class="form-group">
         <select class="form-control" name="company" required>
         <?php foreach ($companies as $k => $v) { ?>
             <option value="<?php echo $v['companyId']; ?>"><?php echo $v['companyTitle']; ?></option>

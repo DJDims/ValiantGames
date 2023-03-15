@@ -16,9 +16,6 @@
         <input class="form-control" type="text" placeholder="Poster" name="gamePoster" value="<?php echo $game['poster']; ?>" />
     </div>
     <div class="form-group">
-        <textarea class="form-control" placeholder="Description" name="gameDescription"><?php echo $game['description']; ?></textarea>
-    </div>
-    <div class="form-group">
         <select class="form-control" name="company" required>
         <?php foreach ($companies as $k => $v) { ?>
         <?php if ($v['id'] == $game['companyId']) { ?>

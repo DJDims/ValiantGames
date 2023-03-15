@@ -95,7 +95,7 @@ switch($route){
 //---------------users---------------
 //---------------companies---------------
 	case 'showTableCompanies':
-		CompanyController::showTableCompanies($param);
+		CompanyController::showTableCompanies($_GET['page']);
 		break;
 		
 	case 'showAddCompany':

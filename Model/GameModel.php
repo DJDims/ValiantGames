@@ -197,12 +197,11 @@ class GameModel{
         $year = $_POST['gameYear'];
         $price = $_POST['gamePrice'];
         $poster = trim($_POST['gamePoster']);
-        $description = trim($_POST['gameDescription']);
 
         if ($title == '') {
             return false;
         }
-        $query = "INSERT INTO `games`(`title`, `companyId`, `categoryId`, `publishYear`, `poster`, `price`, `description`) VALUES ('$title','$company','$category','$year','$poster','$price','$description')";
+        $query = "INSERT INTO `games`(`title`, `companyId`, `categoryId`, `publishYear`, `poster`, `price`) VALUES ('$title','$company','$category','$year','$poster','$price')";
         $db = new database();
         $response = $db -> executeRun($query);
         
@@ -224,13 +223,12 @@ class GameModel{
         $year = $_POST['gameYear'];
         $price = $_POST['gamePrice'];
         $poster = trim($_POST['gamePoster']);
-        $description = trim($_POST['gameDescription']);
 
         if ($title == '') {
             return false;
         }
 
-        $query = "UPDATE `games` SET `title`='$title',`publishYear`='$year',`companyId`='$company',`poster`='$poster',`description`='$description',`price`='$price',`categoryId`='$category' WHERE id = '$gameId'";
+        $query = "UPDATE `games` SET `title`='$title',`publishYear`='$year',`companyId`='$company',`poster`='$poster',`price`='$price',`categoryId`='$category' WHERE id = '$gameId'";
         $db = new database();
         $response = $db -> executeRun($query);
             
