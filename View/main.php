@@ -70,7 +70,7 @@ ob_start();
             <?php } ?>
                 <div class="col-lg-12">
                     <div class="main-button">
-                        <a href="browse">Discover Popular</a>
+                        <a href="browseNewest">Browse Newest</a>
                     </div>
                 </div>
             </div>
@@ -102,7 +102,7 @@ ob_start();
             <?php } ?>
                 <div class="col-lg-12">
                     <div class="main-button">
-                        <a href="browse">Discover Popular</a>
+                        <a href="browsePopular">Browse Popular</a>
                     </div>
                 </div>
             </div>

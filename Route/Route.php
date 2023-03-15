@@ -28,6 +28,14 @@ switch($route){
 	case 'advancedSearch':
 		MainController::advancedSearch();
 		break;
+
+	case 'browseNewest':
+		MainController::browse('publishYear', 'DESC');
+		break;
+
+	case 'browsePopular':
+		MainController::browsePopular();
+		break;
 //---------------users---------------
 	case 'showLogin':
 		UserController::showLoginForm();

@@ -7,14 +7,14 @@
     <form action="advancedSearch" method="POST" class="d-flex justify-content-between">
         <div class="form-group align-items-center">
             <label class="form-label mx-2">Keyword</label>
-            <input class="form-control" placeholder="Keyword" name="keyword">
+            <input class="form-control" placeholder="Keyword" name="keyword" value="<?php if(isset($_POST['keyword'])) {echo trim($_POST['keyword']);} ?>">
         </div>
         <div class="form-group align-items-center">
             <label class="form-label mx-2">Company</label>
             <select class="form-select" name="company">
                 <option selected></option>
                 <?php foreach ($companies as $k => $v) { ?>
-                    <option value="<?php echo $v['companyId']; ?>"><?php echo $v['companyTitle']; ?></option>
+                    <option value="<?php echo $v['companyId']; ?>" <?php if(isset($_POST['company']) && $_POST['company'] == $v['companyId']) {echo 'selected';} ?>><?php echo $v['companyTitle']; ?></option>
                 <?php } ?>
             </select>
         </div>
@@ -23,7 +23,7 @@
             <select class="form-select" name="category">
                 <option selected></option>
                 <?php foreach ($categories as $k => $v) { ?>
-                    <option value="<?php echo $v['categoryId']; ?>"><?php echo $v['categoryTitle']; ?></option>
+                    <option value="<?php echo $v['categoryId']; ?>" <?php if(isset($_POST['category']) && $_POST['category'] == $v['categoryId']) {echo 'selected';} ?>><?php echo $v['categoryTitle']; ?></option>
                 <?php } ?>
             </select>
         </div>
@@ -32,7 +32,7 @@
             <select class="form-select" name="year">
                 <option selected></option>
                 <?php foreach ($years as $k => $v) { ?>
-                    <option value="<?php echo $v['publishYear']; ?>"><?php echo $v['publishYear']; ?></option>
+                    <option value="<?php echo $v['publishYear']; ?>" <?php if(isset($_POST['year']) && $_POST['year'] == $v['publishYear']) {echo 'selected';} ?>><?php echo $v['publishYear']; ?></option>
                 <?php } ?>
             </select>
         </div>

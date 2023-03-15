@@ -2,14 +2,18 @@
 ob_start();
 ?>
 
-<div id="most-popular" class="most-popular">
+<div id="most-popular" class="most-popular header-text">
     <div class="row">
         <div class="col-lg-12">
-            <div class="heading-section">
+            <div class="heading-section d-flex justify-content-between">
                 <h4>All Games</h4>
+                <div>
+                    <a href="browseNewest" class="btn btn-primary">Newest</a>
+                    <a href="browsePopular" class="btn btn-primary">Popular</a>
+                </div>
             </div>
             <div class="row">
-            <?php foreach ($newGames as $k => $v) { ?>
+            <?php foreach ($games as $k => $v) { ?>
                 <div class="col-lg-3 col-sm-6">
                     <a href="showGameDetails?<?php echo $v['id']; ?>">
                         <div class="item">

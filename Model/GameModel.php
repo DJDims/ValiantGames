@@ -49,6 +49,15 @@ class GameModel{
         return $response;
     }
 
+    
+    public static function findGamesOrderBy($orderBy, $orderType) {
+        $query = "SELECT * FROM `games` INNER JOIN categories ON games.categoryId = categories.categoryId ORDER BY $orderBy $orderType";
+        $db = new database();
+        $response = $db -> getAll($query);
+
+        return $response;
+    }
+
     public static function findGamesOrderByPurchases($limit=0) {
         $query = "SELECT gameId, COUNT(userId) FROM `game_user` WHERE status = 2 GROUP BY gameId ORDER BY COUNT(userId) DESC";
         if ($limit > 0) {
