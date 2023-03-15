@@ -19,7 +19,9 @@ class GameController{
 
     public static function showGameDetails($gameId) {
         $game = GameModel::findGameById($gameId);
-        $userStatus = GameModel::findUserStatus($gameId, $_SESSION['userId']);
+        if (isset($_SESSION['userId'])) {
+            $userStatus = GameModel::findUserStatus($gameId, $_SESSION['userId']);
+        }
 
         include_once('View/gameDetails.php');
         return;

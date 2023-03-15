@@ -78,13 +78,14 @@ class UserModel{
             return false;
         }
 
-        if ($username == $response['username'] && password_verify($password, $response['password'])) {
-            $_SESSION['sessionId'] = session_id();
-            $_SESSION['userId'] = $response['id'];
-            $_SESSION['avatar'] = $response['avatar'];
-            $_SESSION['role'] = $response['role'];
+        if ($username != $response['username'] || !password_verify($password, $response['password'])) {
+            return false;
         }
 
+        $_SESSION['sessionId'] = session_id();
+        $_SESSION['userId'] = $response['id'];
+        $_SESSION['avatar'] = $response['avatar'];
+        $_SESSION['role'] = $response['role'];
 
         return true;
     }
@@ -107,6 +108,10 @@ class UserModel{
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
         $confirmPassword = trim($_POST['confirmPassword']);
+
+        if ($username == '' || $password == '' || $confirmPassword == '') {
+            return false;
+        }
         
         if($password != $confirmPassword) {
             return false;
@@ -208,6 +213,24 @@ class UserModel{
             return false;
         }
         
+        return true;
+    }
+
+    public static function changeAvatar($userId) {
+        if (!isset($_POST['send'])) {
+            return false;
+        }
+
+        $avatar = trim($_POST['avatar']);
+
+        $query = "UPDATE `users` SET `avatar`= '$avatar' WHERE id = $userId";
+        $db = new database();
+        $response = $db -> executeRun($query);
+
+        if ($response != true) {
+            return false;
+        }
+
         return true;
     }
 

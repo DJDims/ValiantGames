@@ -17,6 +17,9 @@ class UserController{
         if (isset($result) && $result == true) {
             MainController::showMain();
         } else {
+            $_SESSION['alert']['message'] = 'Неверный логин или пароль';
+            $_SESSION['alert']['type'] = 'alert-danger';
+            $_SESSION['alert']['icon'] = '#exclamation-triangle-fill';
             include_once('View/loginForm.php');
         }
 
@@ -56,6 +59,9 @@ class UserController{
         if (isset($result) && $result == true) {
             UserController::login();
         } else {
+            $_SESSION['alert']['message'] = 'Ошибка регистрации';
+            $_SESSION['alert']['type'] = 'alert-danger';
+            $_SESSION['alert']['icon'] = '#exclamation-triangle-fill';
             include_once('View/registerForm.php');
         }
 
@@ -199,6 +205,29 @@ class UserController{
         }
         
         header('Location: showTableUsers');
+        return;
+    }
+
+    public static function changeAvatar() {
+        if (!isset($_SESSION['role'])) {
+            header('Location: showLoginForm');
+            return;
+        }
+
+        $result = UserModel::changeAvatar($_SESSION['userId']);
+
+        if ($result == true) {
+            $_SESSION['avatar'] = trim($_POST['avatar']);
+            $_SESSION['alert']['message'] = 'Аватар успешно обновлен';
+            $_SESSION['alert']['type'] = 'alert-success';
+            $_SESSION['alert']['icon'] = '#check-circle-fill';
+        } else {
+            $_SESSION['alert']['message'] = 'Не удалось обновить аватар';
+            $_SESSION['alert']['type'] = 'alert-danger';
+            $_SESSION['alert']['icon'] = '#exclamation-triangle-fill';
+        }
+
+        UserController::showProfile();
         return;
     }
 }

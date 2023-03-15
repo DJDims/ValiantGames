@@ -77,7 +77,7 @@
 								<li><a href="showTableCategories?1">Categories</a></li>
 								<li><a href="showTableUsers">Users</a></li>
 							<?php } else { ?>
-								<li><a href="browse.html">Browse</a></li>
+								<li><a href="browseNewest">Browse</a></li>
 							<?php } ?>
 								<li id="loginButton" style="position: relative;">
 									<a href="profile">Profile 

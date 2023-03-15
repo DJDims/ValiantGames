@@ -27,7 +27,9 @@ ob_start();
         <div class="main-profile ">
             <div class="row">
                 <div class="col-lg-4">
-                    <img src="<?php echo $_SESSION['avatar']?>" alt="" style="border-radius: 23px;">
+                    <a id="showChangeAvatar" href="#" data-bs-toggle="modal" data-bs-target="#changeAvatarModal">
+                        <img src="<?php echo $_SESSION['avatar']?>" alt="" style="border-radius: 23px;">
+                    </a>
                 </div>
                 <div class="col-lg-4 align-self-center">
                     <div class="main-info header-text">
@@ -123,6 +125,31 @@ ob_start();
     </div>
 </div>
 <!-- ***** Add Money Modal ***** -->
+<!-- ***** Change avatar Modal ***** -->
+<div class="modal" id="changeAvatarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Change avatar</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="changeAvatar" method="POST">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="avatar"/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" name="send">Change</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- ***** Change avatar Modal ***** -->
 <!-- ***** Modals ***** -->
 
 <script src="../Public/js/account.js"></script>

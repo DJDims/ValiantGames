@@ -92,10 +92,14 @@ switch($route){
 	case 'changeRole':
 		UserController::changeRole();
 		break;
+
+	case 'changeAvatar':
+		UserController::changeAvatar();
+		break;
 //---------------users---------------
 //---------------companies---------------
 	case 'showTableCompanies':
-		CompanyController::showTableCompanies($_GET['page']);
+		CompanyController::showTableCompanies($param);
 		break;
 		
 	case 'showAddCompany':
