@@ -13,6 +13,8 @@ class CategoryController{
         $pagesCount = CategoryModel::countPages();
         $pageNumber = $page;
         
+        $_SESSION['currentPage'] = 'categories';
+
         include_once('View/categoryTable.php');
         return;
     }
@@ -100,7 +102,12 @@ class CategoryController{
         $category = CategoryModel::findCategoryById($categoryId);
         $countGames = CategoryModel::countGamesByCategoryId($categoryId);
 
-        include_once('View/categoryDelete.php');
+        if ($category) {
+            include_once('View/categoryDelete.php');
+        } else {
+            header('Location: showTableCategories?1');
+        }
+
         return;
     }
     

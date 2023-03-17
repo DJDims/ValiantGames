@@ -12,6 +12,8 @@ class GameController{
         $games = GameModel::findAllGamesByOffset($offset);
         $pagesCount = GameModel::countPages();
         $pageNumber = $page;
+
+        $_SESSION['currentPage'] = 'games';
         
         include_once('View/gameTable.php');
         return;
@@ -102,8 +104,13 @@ class GameController{
         $game = GameModel::findGameById($gameId);
         $company = CompanyModel::findCompanyById($game['companyId']);
         $category = CategoryModel::findCategoryById($game['categoryId']);
+
+        if ($game) {
+            include_once('View/gameDelete.php');
+        } else {
+            header('Location: showTableGames?1');
+        }
         
-        include_once('View/gameDelete.php');
         return;
     }
 

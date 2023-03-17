@@ -12,6 +12,8 @@ class CompanyController{
         $companies = CompanyModel::findAllCompaniesByOffset($offset);
         $pagesCount = CompanyModel::countPages();
         $pageNumber = $page;
+
+        $_SESSION['currentPage'] = 'companies';
         
         include_once('View/companyTable.php');
         return;
@@ -100,7 +102,12 @@ class CompanyController{
         $company = CompanyModel::findCompanyById($companyId);
         $countGames = CompanyModel::countGamesByCompanyId($companyId);
 
-        include_once('View/companyDelete.php');
+        if ($company) {
+            include_once('View/companyDelete.php');
+        } else {
+            header('Location: showTableCompanies?1');
+        }
+
         return;
     }
     

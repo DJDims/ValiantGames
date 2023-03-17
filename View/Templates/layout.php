@@ -63,19 +63,19 @@
 						<!-- ***** Search End ***** -->
 						<!-- ***** Menu Start ***** -->
 						<ul class="nav">
-							<li><a href="/" class="active">Home</a></li>
+							<li><a href="/" <?php if ($_SESSION['currentPage'] == 'home') {echo 'class="active"'; } ?>>Home</a></li>
 							<?php if (!isset($_SESSION['sessionId'])) { ?>
 							<li><a href="showLogin">LogIn</a></li>
 							<?php } else { ?>
 							<?php if ($_SESSION['role'] == 'MODERATOR') { ?>
-								<li><a href="showTableGames?1">Games</a></li>
-								<li><a href="showTableCompanies?1">Companies</a></li>
-								<li><a href="showTableCategories?1">Categories</a></li>
+								<li><a href="showTableGames?1" <?php if ($_SESSION['currentPage'] == 'games') {echo 'class="active"'; } ?>>Games</a></li>
+								<li><a href="showTableCompanies?1" <?php if ($_SESSION['currentPage'] == 'companies') {echo 'class="active"'; } ?>>Companies</a></li>
+								<li><a href="showTableCategories?1" <?php if ($_SESSION['currentPage'] == 'categories') {echo 'class="active"'; } ?>>Categories</a></li>
 							<?php } elseif ($_SESSION['role'] == 'ADMIN') { ?>
-								<li><a href="showTableGames?1">Games</a></li>
-								<li><a href="showTableCompanies?1">Companies</a></li>
-								<li><a href="showTableCategories?1">Categories</a></li>
-								<li><a href="showTableUsers">Users</a></li>
+								<li><a href="showTableGames?1" <?php if ($_SESSION['currentPage'] == 'games') {echo 'class="active"'; } ?>>Games</a></li>
+								<li><a href="showTableCompanies?1" <?php if ($_SESSION['currentPage'] == 'companies') {echo 'class="active"'; } ?>>Companies</a></li>
+								<li><a href="showTableCategories?1" <?php if ($_SESSION['currentPage'] == 'categories') {echo 'class="active"'; } ?>>Categories</a></li>
+								<li><a href="showTableUsers" <?php if ($_SESSION['currentPage'] == 'users') {echo 'class="active"'; } ?>>Users</a></li>
 							<?php } else { ?>
 								<li><a href="browseNewest">Browse</a></li>
 							<?php } ?>

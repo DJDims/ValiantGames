@@ -5,6 +5,7 @@ class MainController {
     public static function startSite(){
         $_SESSION['orderBy'] = 'TITLE';
         $_SESSION['orderType'] = 'ASC';
+        $_SESSION['currentPage'] = 'home';
         MainModel::createAdmin();
         MainController::showMain();
         return;
@@ -24,6 +25,8 @@ class MainController {
 
     public static function search() {
         $games = GameModel::findByKeyword(trim($_POST['searchKeyword']));
+
+        $_SESSION['currentPage'] = '';
 
         include_once('View/search.php');
         return;

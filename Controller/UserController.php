@@ -82,6 +82,8 @@ class UserController{
         $countGamesBuyed = UserModel::countBuyedGames($userId);
         $countGamesWished = UserModel::countWishedGames($userId);
 
+        $_SESSION['currentPage'] = '';
+
         include_once('View/myaccount.php');
         return;
     }
@@ -122,6 +124,8 @@ class UserController{
         
         $users = UserModel::findOtherUsers();
         $roles = array('USER', 'MODERATOR', 'ADMIN');
+
+        $_SESSION['currentPage'] = 'users';
 
         include_once('View/userTable.php');
         return;
