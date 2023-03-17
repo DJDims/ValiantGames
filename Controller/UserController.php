@@ -34,7 +34,7 @@ class UserController{
 
         UserModel::logout();
 
-        include_once('View/loginForm.php');
+        header('Location: /');
         return;
     }
 
